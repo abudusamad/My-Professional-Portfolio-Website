@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
+require("dotenv").config();
 
 const app = express();
 app.use(bodyParser.json());
@@ -9,16 +10,16 @@ app.post("/send-email", (req, res) => {
 	const { name, email, message } = req.body;
 
 	const transporter = nodemailer.createTransport({
-		service: "YOUR_EMAIL_SERVICE_PROVIDER",
+		service: process.env.EMAIL_SERVICE_PROVIDER,
 		auth: {
-			user: "YOUR_EMAIL_ADDRESS",
-			pass: "YOUR_EMAIL_PASSWORD",
+			user: process.env.EMAIL_ADDRESS,
+			pass: process.env.EMAIL_PASSWORD,
 		},
 	});
 
 	const mailOptions = {
-		from: "YOUR_EMAIL_ADDRESS",
-		to: "TARGET_EMAIL_ADDRESS",
+		from: process.env.EMAIL_ADDRESS,
+		to: process.env.TARGET_EMAIL_ADDRESS,
 		subject: "New Contact Form Submission",
 		text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
 	};
