@@ -554,22 +554,25 @@
                         </div>
                     </div>
                     <div class="right-contact">
-                        <form action="" class="contact-form">
+                        <form action="" class="contact-form" id="contactForm">
                             <div class="input-control i-c-2">
                                 <input type="text" required placeholder="YOUR NAME">
-                                <input type="email" required placeholder="YOUR EMAIL">
+                                <input type="email" id="email" name="email"  required placeholder="YOUR EMAIL">
                             </div>
                             <div class="input-control">
-                                <input type="text" required placeholder="ENTER SUBJECT">
+                                <input type="text"id="message" name="message" required placeholder="ENTER SUBJECT">
                             </div>
                             <div class="input-control">
-                                <textarea name="" id="" cols="15" rows="8" placeholder="Message Here..."></textarea>
+                                <textarea id="message" name="message" cols="15" rows="8" placeholder="Message Here..."></textarea>
+                                  <button class="submit-btn"type="submit">Submit</button> 
                             </div>
                             <div class="submit-btn">
                                 <a href="#" class="main-btn">
                                     <span class="btn-text">Download CV</span>
                                     <span class="btn-icon"><i class="fas fa-download"></i></span>
                                 </a>
+                                
+                              
                             </div>
                         </form>
                     </div>
