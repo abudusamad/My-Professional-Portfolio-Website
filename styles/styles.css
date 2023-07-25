@@ -7,8 +7,8 @@
 
 :root {
   --color-primary: #191d2b;
-  --color-secondary: #27AE60;
-  --color-white: #FFFFFF;
+  --color-secondary: #27ae60;
+  --color-white: #ffffff;
   --color-black: #000;
   --color-grey0: #f8f8f8;
   --color-grey-1: #dbe1e8;
@@ -18,12 +18,12 @@
   --color-grey-5: #2a2e35;
   --color-grey-6: #12181b;
   --br-sm-2: 14px;
-  --box-shadow-1: 0 3px 15px rgba(0,0,0,.3);
+  --box-shadow-1: 0 3px 15px rgba(0, 0, 0, 0.3);
 }
 
 .light-mode {
-  --color-primary: #FFFFFF;
-  --color-secondary: #F56692;
+  --color-primary: #ffffff;
+  --color-secondary: #f56692;
   --color-white: #454e56;
   --color-black: #000;
   --color-grey0: #f8f8f8;
@@ -598,7 +598,8 @@ section {
 .contact-content-con .right-contact .input-control {
   margin: 1.5rem 0;
 }
-.contact-content-con .right-contact .input-control input, .contact-content-con .right-contact .input-control textarea {
+.contact-content-con .right-contact .input-control input,
+.contact-content-con .right-contact .input-control textarea {
   border-radius: 30px;
   font-weight: inherit;
   font-size: inherit;
@@ -610,6 +611,24 @@ section {
   width: 100%;
   color: var(--color-white);
   resize: none;
+}
+.contact-content-con .right-contact .input-control button {
+  border: none;
+  font-size: 30px;
+  font-family: inherit;
+  outline: none;
+  font-weight: inherit;
+  margin-right: 4rem;
+  background-color: var(--color-grey-5);
+  width: -moz-max-content;
+  width: max-content;
+  color: var(--color-white);
+  resize: none;
+  border-radius: 10px;
+  flex: 1;
+  display: flex;
+  justify-items: flex-end;
+  align-items: start;
 }
 .contact-content-con .right-contact .i-c-2 {
   display: flex;
