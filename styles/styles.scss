@@ -617,19 +617,24 @@ section {
 			}
 			button {
 				border: none;
-				font-size: 24px;
+				font-size: 20px;
 				font-family: inherit;
 				outline: none;
 				font-weight: inherit;
 				margin-right: 4rem;
 				background-color: var(--color-grey-5);
 				width: max-content;
-				color: var(--color-white);
+				color: var(--color-grey-3);
 				resize: none;
 				border-radius: 10px;
 				flex: 1;
 				float: right;
-                margin-right: 0.3rem;
+				margin-right: 0.3rem;
+                text-transform: uppercase;
+                padding: 0.7rem 1rem;
+				&:hover {
+					background-color: var(--color-secondary);
+				}
 			}
 		}
 		.i-c-2 {

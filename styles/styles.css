@@ -614,7 +614,7 @@ section {
 }
 .contact-content-con .right-contact .input-control button {
   border: none;
-  font-size: 24px;
+  font-size: 20px;
   font-family: inherit;
   outline: none;
   font-weight: inherit;
@@ -622,12 +622,17 @@ section {
   background-color: var(--color-grey-5);
   width: -moz-max-content;
   width: max-content;
-  color: var(--color-white);
+  color: var(--color-grey-3);
   resize: none;
   border-radius: 10px;
   flex: 1;
   float: right;
   margin-right: 0.3rem;
+  text-transform: uppercase;
+  padding: 0.7rem 1rem;
+}
+.contact-content-con .right-contact .input-control button:hover {
+  background-color: var(--color-secondary);
 }
 .contact-content-con .right-contact .i-c-2 {
   display: flex;
