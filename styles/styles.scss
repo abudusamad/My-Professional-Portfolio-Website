@@ -614,24 +614,22 @@ section {
 				width: 100%;
 				color: var(--color-white);
 				resize: none;
-			
 			}
 			button {
 				border: none;
-				font-size: 30px;
+				font-size: 24px;
 				font-family: inherit;
 				outline: none;
 				font-weight: inherit;
 				margin-right: 4rem;
-                background-color: var(--color-grey-5);
-                width: max-content;
+				background-color: var(--color-grey-5);
+				width: max-content;
 				color: var(--color-white);
 				resize: none;
-                border-radius: 10px;
-                flex:1;
-               display: flex;
-               justify-items: flex-end;
-               align-items: start;
+				border-radius: 10px;
+				flex: 1;
+				float: right;
+                margin-right: 0.3rem;
 			}
 		}
 		.i-c-2 {
