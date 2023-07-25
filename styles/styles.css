@@ -946,4 +946,7 @@ section {
   .main-title h2 .bg-text {
     font-size: 4rem;
   }
+  button {
+    font-size: 20px;
+  }
 }/*# sourceMappingURL=styles.css.map */
