@@ -1,44 +1,45 @@
+// server.js
+
 const express = require("express");
-const bodyParser = require("body-parser");
 const nodemailer = require("nodemailer");
-require("dotenv").config();
+const bodyParser = require("body-parser");
 
 const app = express();
+const port = 3000;
+
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.post("/send-email", (req, res) => {
 	const { name, email, message } = req.body;
 
+	// Replace these options with your own email credentials
 	const transporter = nodemailer.createTransport({
-		service: process.env.EMAIL_SERVICE_PROVIDER,
+		service: "your_email_service_provider", // e.g., 'Gmail', 'Outlook', etc.
 		auth: {
-			user: process.env.EMAIL_ADDRESS,
-			pass: process.env.EMAIL_PASSWORD,
+			user: "your_email@example.com",
+			pass: "your_email_password",
 		},
 	});
 
 	const mailOptions = {
-		from: process.env.EMAIL_ADDRESS,
-		to: process.env.TARGET_EMAIL_ADDRESS,
-		subject: "New Contact Form Submission",
+		from: "your_email@example.com",
+		to: "recipient@example.com", // Replace with the recipient's email address
+		subject: "Contact Form Submission",
 		text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
 	};
 
 	transporter.sendMail(mailOptions, (error, info) => {
 		if (error) {
 			console.error("Error:", error);
-			res
-				.status(500)
-				.json({ error: "An error occurred while sending the email." });
+			res.status(500).json({ message: "Error sending email." });
 		} else {
-			console.log("Email sent: " + info.response);
-			res.sendStatus(200);
+			console.log("Email sent:", info.response);
+			res.status(200).json({ message: "Email sent successfully." });
 		}
 	});
 });
 
-// Start the server
-const port = 3000; // Replace with your desired port
 app.listen(port, () => {
-	console.log(`Server is running on port ${port}`);
+	console.log(`Server running on http://localhost:${port}`);
 });
