@@ -1,17 +1,21 @@
-const nameInput = document.getElementById("name");
-const emailInput = document.getElementById("email");
+// contact.js
 
-nameInput.addEventListener("input", validateName);
-emailInput.addEventListener("input", validateEmail);
+const contactForm = document.getElementById("contactForm");
 
-function validateName() {
-	const nameValue = nameInput.value;
-	nameInput.classList.toggle("invalid", nameValue.length < 3);
-}
+contactForm.addEventListener("submit", function (event) {
+	event.preventDefault();
 
-function validateEmail() {
-	const emailValue = emailInput.value;
-	const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-	emailInput.classList.toggle("invalid", !emailRegex.test(emailValue));
-}
+	const formData = new FormData(contactForm);
 
+	fetch("/send-email", {
+		method: "POST",
+		body: formData,
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data); // Log the server response, you can handle it differently based on your needs
+		})
+		.catch((error) => {
+			console.error("Error:", error);
+		});
+});
