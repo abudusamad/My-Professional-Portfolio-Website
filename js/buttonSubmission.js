@@ -1,32 +1,19 @@
-document
-	.getElementById("contactForm")
-	.addEventListener("submit", function (event) {
-		event.preventDefault();
-		const form = event.target;
-		const formData = new FormData(form);
-		const jsonData = {};
+const contactForm = document.getElementById("contactForm");
 
-		formData.forEach((value, key) => {
-			jsonData[key] = value;
-		});
+contactForm.addEventListener("submit", function (event) {
+	event.preventDefault();
 
-		fetch("YOUR_SERVER_ENDPOINT", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify(jsonData),
+	const formData = new FormData(contactForm);
+
+	fetch("/send-email", {
+		method: "POST",
+		body: formData,
+	})
+		.then((response) => response.json())
+		.then((data) => {
+			console.log(data); // Log the server response, you can handle it differently based on your needs
 		})
-			.then((response) => {
-				if (response.ok) {
-					alert("Form submitted successfully!");
-					form.reset();
-				} else {
-					alert("Form submission failed. Please try again later.");
-				}
-			})
-			.catch((error) => {
-				console.error("Error:", error);
-				alert("An error occurred. Please try again later.");
-			});
-	});
+		.catch((error) => {
+			console.error("Error:", error);
+		});
+});
