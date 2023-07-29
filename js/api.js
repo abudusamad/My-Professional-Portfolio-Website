@@ -15,16 +15,16 @@ app.post("/send-email", (req, res) => {
 
 	// Replace these options with your own email credentials
 	const transporter = nodemailer.createTransport({
-		service: "your_email_service_provider", // e.g., 'Gmail', 'Outlook', etc.
+		service: "Gmail", // e.g., 'Gmail', 'Outlook', etc.
 		auth: {
-			user: "your_email@example.com",
+			user: "abudusamed@gmail.com",
 			pass: "your_email_password",
 		},
 	});
 
 	const mailOptions = {
 		from: "your_email@example.com",
-		to: "recipient@example.com", // Replace with the recipient's email address
+		to: "abudusamed@gmail.com", // Replace with the recipient's email address
 		subject: "Contact Form Submission",
 		text: `Name: ${name}\nEmail: ${email}\nMessage: ${message}`,
 	};
