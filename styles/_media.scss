@@ -111,8 +111,8 @@
     }
 
     .contact-item{
-        flex-direction: column;
-        margin: 1rem 0;
+        flex-direction: row;
+        margin: 0.5rem auto ;
         p{
             font-size: 15px;
             color: var(--color-grey-2);

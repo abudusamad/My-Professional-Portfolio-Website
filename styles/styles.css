@@ -807,8 +807,8 @@ section {
     margin-bottom: 6rem;
   }
   .contact-item {
-    flex-direction: column;
-    margin: 1rem 0;
+    flex-direction: row;
+    margin: 0.5rem auto;
   }
   .contact-item p {
     font-size: 15px;
