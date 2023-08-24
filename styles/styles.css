@@ -612,27 +612,6 @@ section {
   color: var(--color-white);
   resize: none;
 }
-.contact-content-con .right-contact .input-control button {
-  font-size: 20px;
-  font-family: inherit;
-  outline: none;
-  font-weight: inherit;
-  margin-right: 4rem;
-  background-color: var(--color-grey-5);
-  width: -moz-max-content;
-  width: max-content;
-  color: var(--color-grey-3);
-  resize: none;
-  border-radius: 10px;
-  flex: 1;
-  float: right;
-  margin-right: 0.3rem;
-  text-transform: uppercase;
-  padding: 0.7rem 1rem;
-}
-.contact-content-con .right-contact .input-control button:hover {
-  background-color: var(--color-secondary);
-}
 .contact-content-con .right-contact .i-c-2 {
   display: flex;
 }
@@ -641,7 +620,22 @@ section {
 }
 .contact-content-con .right-contact .submit-btn {
   display: flex;
-  justify-content: flex-start;
+  justify-content: space-between;
+}
+.contact-content-con .right-contact .submit-btn button {
+  font-size: 20px;
+  font-family: inherit;
+  outline: none;
+  font-weight: inherit;
+  background-color: var(--color-grey-5);
+  color: var(--color-grey-3);
+  resize: none;
+  border-radius: 10px;
+  text-transform: uppercase;
+  padding: 0.7rem 1rem;
+}
+.contact-content-con .right-contact .submit-btn button:hover {
+  background-color: var(--color-secondary);
 }
 
 /*Independed components*/
