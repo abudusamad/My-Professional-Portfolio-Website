@@ -1,21 +1,26 @@
-// contact.js
+document
+	.getElementById("contactForm")
+	.addEventListener("submit", function (event) {
+		event.preventDefault();
 
-const contactForm = document.getElementById("contactForm");
+		const name = document.getElementById("name").value;
+		const email = document.getElementById("email").value;
+		const message = document.getElementById("message").value;
 
-contactForm.addEventListener("submit", function (event) {
-	event.preventDefault();
+		const formData = { name, email, message };
 
-	const formData = new FormData(contactForm);
-
-	fetch("/send-email", {
-		method: "POST",
-		body: formData,
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			console.log(data); // Log the server response, you can handle it differently based on your needs
+		fetch("/send-email", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(formData),
 		})
-		.catch((error) => {
-			console.error("Error:", error);
-		});
-});
+			.then((response) => response.json())
+			.then((data) => {
+				alert(data.message); // Display server response to the user
+			})
+			.catch((error) => {
+				console.error("Error:", error);
+			});
+	});
