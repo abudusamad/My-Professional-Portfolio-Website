@@ -9,19 +9,16 @@ const port = 3000;
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+require("dotenv").config();
+const express = require("express");
+const dbUri = process.env.DB_URI;
+const apiKey = process.env.API_KEY;
 
 app.post("/send-email", (req, res) => {
 	const { name, email, message } = req.body;
 
 	// Replace these options with your own email credentials
-	const transporter = nodemailer.createTransport({
-		service: "Gmail", // e.g., 'Gmail', 'Outlook', etc.
-		auth: {
-			user: "abudusamed@gmail.com",
-			pass: "your_email_password",
-		},
-	});
-
+	
 	const mailOptions = {
 		from: "your_email@example.com",
 		to: "abudusamed@gmail.com", // Replace with your personal email address
