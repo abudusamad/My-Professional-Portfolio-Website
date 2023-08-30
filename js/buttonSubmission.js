@@ -1,19 +1,16 @@
-const contactForm = document.getElementById("contactForm");
+const form = document.getElementById("myForm");
+document.addEventListener("DOMContentLoaded", function () {
+	const responseDiv = document.getElementById("response");
+	form.addEventListener("submit", function (event) {
+		event.preventDefault();
 
-contactForm.addEventListener("submit", function (event) {
-	event.preventDefault();
+		const name = document.getElementById("name").value;
+		const email = document.getElementById("email").value;
 
-	const formData = new FormData(contactForm);
+		const responseData = {
+			message: "Thank you, ${name}! Your email (${email}) has been received.",
+		};
 
-	fetch("/send-email", {
-		method: "POST",
-		body: formData,
-	})
-		.then((response) => response.json())
-		.then((data) => {
-			console.log(data); // Log the server response, you can handle it differently based on your needs
-		})
-		.catch((error) => {
-			console.error("Error:", error);
-		});
+		responseDiv.textContent = responseData.message;
+	});
 });
