@@ -1,19 +1,27 @@
 document.addEventListener("DOMContentLoaded", function () {
 	const form = document.getElementById("myForm");
-	const responseDiv = document.getElementById("response");
 
 	form.addEventListener("submit", function (event) {
-		event.preventDefault(); // Prevent the default form submission behavior
+		event.preventDefault();
 
 		const name = document.getElementById("name").value;
 		const email = document.getElementById("email").value;
 
-		// Process the form data (you can replace this with your own logic)
 		const responseData = {
 			message: `Thank you, ${name}! Your email (${email}) has been received.`,
 		};
 
-		// Display the response
-		responseDiv.textContent = responseData.message;
+		// Create a popup element
+		const popup = document.createElement("div");
+		popup.classList.add("popup");
+		popup.textContent = responseData.message;
+
+		// Append the popup to the body
+		document.body.appendChild(popup);
+
+		// Automatically remove the popup after a delay
+		setTimeout(function () {
+			popup.remove();
+		}, 3000); // Remove after 3 seconds (adjust as needed)
 	});
 });
