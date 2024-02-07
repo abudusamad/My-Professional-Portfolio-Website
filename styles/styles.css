@@ -625,11 +625,10 @@ section {
 .contact-content-con .right-contact .submit-btn button {
   font-size: 20px;
   font-family: inherit;
+  background-color: transparent;
   outline: none;
-  font-weight: inherit;
-  background-color: var(--color-primary);
-  color: var(--color-grey-3);
-  resize: none;
+  border: 1px solid var(--color-secondary);
+  color: white;
   border-radius: 10px;
   text-transform: uppercase;
   padding: 0.7rem 1rem;
