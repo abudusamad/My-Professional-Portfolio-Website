@@ -12,39 +12,17 @@ datasource db {
 }
 
 
-model User {
-  id           String             @id @default(cuid())
-  name         String?
-  email        String           @unique
-  profileViews Int              @default(0)
-  role         Role             @default(USER)
-  coinflips    Boolean[]
-  posts        Post[]
-  city         String
-  country      String
-  profile      ExtendedProfile?
-  pets         Json
-}
-
-model ExtendedProfile {
-  id     String    @id @default(cuid())
-  userId String?    @unique
-  bio    String?
-  User   User?   @relation(fields: [userId], references: [id])
-}
-
-model Post {
-  id        String     @id @default(cuid())
-  title     String
-  published Boolean @default(true)
-  author    User    @relation(fields: [authorId], references: [id])
-  authorId String
-  comments  Json
-  views     Int     @default(0)
-  likes     Int     @default(0)
-}
-
 enum Role {
   USER
   ADMIN
 }
+model User {
+  id           String             @id @default(cuid())
+  name         String?
+  email        String           @unique
+  password  String
+  bio  String
+  profile_pic String
+  role         Role             @default(USER)
+}
+
