@@ -22,7 +22,7 @@ enum Role {
   ADMIN
 }
 
-enum Profiency {
+enum Proficiency {
   BEGINNER
   INTERMEDIATE
   EXPERT
@@ -48,9 +48,8 @@ contacts      Contact[]
 }
 model TechStack{
   id String @id @default(cuid())
-  name String
-  projects Project[]
-
+  name String @unique
+  projects ProjectOnTechStack[]
 } 
 
 model Project {
@@ -65,46 +64,55 @@ model Project {
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
   
-  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  tech TechStack @relation(fields: [techId], references: [id], onDelete: Cascade)
+  user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  techStacks  ProjectOnTechStack[]
+  @@unique([userId, createdAt])
+}
 
-  @@unique([createdAt, updateAt])
+model ProjectOnTechStack {
+  id         String    @id @default(cuid())
+  techId     String
+  projectId  String
+
+  techStack  TechStack @relation(fields: [techId], references: [id], onDelete: Cascade)
+  project    Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([techId, projectId])  // To ensure no duplicate entries
 }
 
 model BlogPost {
-  id          String   @id @default(cuid())
-  title       String
-  content     String
-  tags        String
-  published   Boolean  @default(false)
-  authorId    String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+id          String   @id @default(cuid())
+title       String
+content     String
+tags        String
+published   Boolean  @default(false)
+authorId    String
+createdAt   DateTime @default(now())
+updatedAt   DateTime @updatedAt
 
   author      User     @relation(fields: [authorId], references: [id])
 
-@@unique([content, createdAt])
 }
 
 model Education{
   id                String @id @default(cuid())
   userId            String
   institution       String
-  qualifications    Json
+  qualifications    String
   startDate         DateTime 
   endDate           DateTime @updatedAt
 
   user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  @@unique([startDate, endDate])
+  @@unique([startDate, institution])
 
 }
 
 model Skill{
-  id String @id @default(cuid())
-  userId String
-  skill_name Json
-  proficency Profiency @default(BEGINNER)
+  id      String @id @default(cuid())
+  userId  String
+  skill_name String
+  proficency Proficiency @default(BEGINNER)
 
   user User @relation(fields: [userId], references: [id],onDelete: Cascade)
   
@@ -114,7 +122,7 @@ model Job{
   id String @id @default(cuid())
   userId String
   companyName String
-  postion String
+  position String
   description String
   startDate DateTime
   endDate DateTime? @updatedAt
@@ -124,20 +132,22 @@ model Job{
 
 model Notification{
   id String @id @default(cuid())
-  UserId String
+  userId String
   message String
   isRead Boolean
   createdAt DateTime @default(now())
 
-  user User @relation(fields: [UserId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, isRead])
 }
 
 model Contact{
   id String @id @default(cuid())
   userId String
-  phoneNumber Int
+  phoneNumber String
   address String
-  email String 
+  email String @unique
   linkedin String
   github String
   twitter String

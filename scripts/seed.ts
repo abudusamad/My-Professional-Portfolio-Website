@@ -1,23 +1,31 @@
-import { PrismaClient } from '@prisma/client';
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { PrismaClient } = require("@prisma/client");
+
 const prismadb = new PrismaClient();
 
 async function locate() {
     try {
         await prismadb.techStack.createMany({
             data: [
-                { name: "Ayeduase New-Site" },
-                { name: "Boadi" },
-                { name: "Kotei" },
-                { name: "Bomso" },
-                { name: "Ayeduase, North-Side" },
-                { name: "Emena" },
-                { name: "Ayigya" },
-                { name: "Kentikrono" },
-                { name: "Ahinsan" },
-                { name: "Gaza" },
-                { name: "Maxima" },
-                { name: "Ayeduase, South-Side" },
-                { name: "Gyinase" }                   
+                { name: "Next.Js" },
+                { name: "React.Js" },
+                { name: "MySQL" },
+                { name: "MongoDB" },
+                { name: "Prisma" },
+                { name: "Tailwind" },
+                { name: "Node.Js" },
+                { name: "Convex" },
+                { name: "Next Auth" },
+                { name: "PostgresSQL" },
+            { name: "Drizzle" },
+            { name: "Firebase" },
+            { name: "GraphQL" },
+            { name: "Spring Boot" },
+            { name: "Django" },
+            { name: "Flask" },
+            { name: "Express" },
+    
+                
             ]
         });
         console.log("Seeding locations successful");
