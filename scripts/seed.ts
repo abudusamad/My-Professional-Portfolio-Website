@@ -1,24 +1,35 @@
 import { PrismaClient } from '@prisma/client';
+const prismadb = new PrismaClient();
 
-const prisma = new PrismaClient();
-
-// Your seeding logic here
-
-async function main() {
-  // Example seeding logic
-  await prisma.user.create({
-    data: {
-      name: 'Alice',
-      email: 'alice@prisma.io',
-    },
-  });
+async function locate() {
+    try {
+        await prismadb.techStack.createMany({
+            data: [
+                { name: "Ayeduase New-Site" },
+                { name: "Boadi" },
+                { name: "Kotei" },
+                { name: "Bomso" },
+                { name: "Ayeduase, North-Side" },
+                { name: "Emena" },
+                { name: "Ayigya" },
+                { name: "Kentikrono" },
+                { name: "Ahinsan" },
+                { name: "Gaza" },
+                { name: "Maxima" },
+                { name: "Ayeduase, South-Side" },
+                { name: "Gyinase" }                   
+            ]
+        });
+        console.log("Seeding locations successful");
+    } catch (error) {
+        console.error("Error seeding locations:", error);
+    } finally {
+        await prismadb.$disconnect();
+    }
 }
 
-main()
-  .catch((e) => {
-    console.error(e);
-    process.exit(1);
-  })
-  .finally(async () => {
-    await prisma.$disconnect();
-  });
+async function seedDatabase() {
+    await locate();
+}
+
+seedDatabase();
