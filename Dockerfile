@@ -6,7 +6,9 @@ COPY package*.json ./
 COPY prisma ./prisma
 ARG NODE_ENV
 ENV NODE_ENV $NODE_ENV
-RUN npm install --frozen-lockfile
+# RUN npm install --frozen-lockfile
+RUN npm install --frozen-lockfile --omit=dev
+
 
 # Stage 2: Build the project
 FROM node:20-alpine AS builder
