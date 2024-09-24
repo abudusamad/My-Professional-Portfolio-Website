@@ -3,14 +3,19 @@ FROM node:20-alpine AS base
 # Install the necessary dependencies
 FROM base AS deps
 
+RUN apk add --no-cache libc6-compat
+
+
 WORKDIR /app
 # Only copy the package and lock files to leverage Docker cache
+RUN corepack prepare npm@latest --activate
+
 COPY package*.json ./
 COPY prisma ./prisma
 ARG NODE_ENV
 ENV NODE_ENV $NODE_ENV
-# RUN npm install --frozen-lockfile
-RUN npm install --frozen-lockfile --omit=dev
+RUN corepack enable npm && npm i --frozen-lockfile
+
 
 
 # Stage 2: Build the project
@@ -18,7 +23,9 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm run build
+
+RUN npm install -g npm && npm run build
+
 
 # Stage 3: Production image
 FROM base AS runner
@@ -37,9 +44,11 @@ COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/tailwind.config.js ./tailwind.config.js
+COPY --from=builder /app/tailwind.config.ts ./tailwind.config.ts
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
 COPY --from=builder /app/jsconfig.json ./jsconfig.json
+COPY --from=builder /app/.env ./.env
+COPY --from=builder /app/postcss.config.mjs ./postcss.config.mjs
 
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
