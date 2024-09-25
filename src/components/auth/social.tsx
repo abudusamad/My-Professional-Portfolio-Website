@@ -33,33 +33,35 @@ export const Social = () => {
     });
   };
   return (
-    <div className="flex items-center w-full gap-x-2">
-      <Button
-        size="lg"
-        className="w-full"
-        variant="outline"
-        disabled={googleLoading}
-        onClick={() => SignInWithProvider("google")}
-      >
-        {googleLoading ? (
-          <Loader2 className="h-5 w-5 animate-spin" />
-        ) : (
-          <GoogleLogo className="h-5 w-5" />
-        )}
-      </Button>
-      <Button
-        size="lg"
-        className="w-full"
-        variant="outline"
-        disabled={githubLoading}
-        onClick={() => SignInWithProvider("github")}
-      >
-        {githubLoading ? (
-          <Loader2 className="h-5 w-5 animate-spin" />
-        ) : (
-          <GitHubLogo className="h-5 w-5" />
-        )}
-      </Button>
-    </div>
+ 
+      <div className="flex items-center w-full gap-x-2">
+        <Button
+          size="lg"
+          className="w-full"
+          variant="outline"
+          disabled={googleLoading}
+          onClick={() => SignInWithProvider("google")}
+        >
+          {googleLoading ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <GoogleLogo className="h-5 w-5" />
+          )}
+        </Button>
+        <Button
+          size="lg"
+          className="w-full"
+          variant="outline"
+          disabled={githubLoading}
+          onClick={() => SignInWithProvider("github")}
+        >
+          {githubLoading ? (
+            <Loader2 className="h-5 w-5 animate-spin" />
+          ) : (
+            <GitHubLogo className="h-5 w-5" />
+          )}
+        </Button>
+      </div>
+  
   );
 };

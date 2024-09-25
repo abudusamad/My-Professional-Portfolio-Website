@@ -7,6 +7,7 @@ import {
 import { Header } from "./header";
 import { BackButton } from "./back-button";
 import { Social } from "./social";
+import { SignInMethodDivider } from "./signIn-method-divider";
 
 interface CardWrapperProps {
   children: React.ReactNode;
@@ -31,7 +32,10 @@ export const CardWrapper = ({
       <CardContent>{children}</CardContent>
       {showSocial && (
         <CardFooter>
-          <Social />
+          <div className="flex flex-col items-center w-full space-y-4">
+            <SignInMethodDivider />
+            <Social />
+          </div>
         </CardFooter>
       )}
       <CardFooter>
