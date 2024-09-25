@@ -6,7 +6,7 @@ import {
     apiAuthPrefix,
     DEFAULT_LOGIN_REDIRECT,
     publicRoutes
-} from "../routes";
+} from "@/routes";
 
 
 const { auth } = NextAuth(authConfig);

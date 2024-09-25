@@ -6,10 +6,14 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { GoogleLogo } from "./google-logo";
 import { GitHubLogo } from "./github-logo";
+import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
+import { useSearchParams } from "next/navigation";
 
 export const Social = () => {
   const [googleLoading, setGoogleLoading] = useState(false);
   const [githubLoading, setGithubLoading] = useState(false);
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl");
 
   const SignInWithProvider = async (provider: "github" | "google") => {
     if (provider === "google") {
@@ -18,7 +22,9 @@ export const Social = () => {
       setGithubLoading(true);
     }
 
-    await signIn(provider).finally(() => {
+    await signIn(provider, {
+      callbackUrl: callbackUrl || DEFAULT_LOGIN_REDIRECT,
+    }).finally(() => {
       if (provider === "google") {
         setGoogleLoading(false);
       } else if (provider === "github") {
