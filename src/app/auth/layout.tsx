@@ -4,7 +4,7 @@ interface AuthLayoutProps {
 
 const AuthLayout = ({ children }: AuthLayoutProps) => {
   return (
-    <main className="flex min-h-screen items-center justify-center">
+    <main className="flex min-h-screen items-center justify-center bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-sky-400 to-blue-800">
       {children}
     </main>
   );

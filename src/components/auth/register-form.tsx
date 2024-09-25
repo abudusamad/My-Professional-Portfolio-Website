@@ -3,7 +3,6 @@
 import * as z from "zod";
 import { useForm } from "react-hook-form";
 import { useState, useTransition } from "react";
-import { useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Input } from "@/components/ui/input";

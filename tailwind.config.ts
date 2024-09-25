@@ -8,7 +8,16 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-  	extend: {
+	  extend: {
+		  keyframes: {
+			  'border-t': {
+				  from: { width: '100%' },
+				  to: { width: '0%' },
+			  },
+		  },
+		   animation: {
+        'border-t': 'border-t 5s linear forwards',
+      },
   		colors: {
   			background: 'hsl(var(--background))',
   			foreground: 'hsl(var(--foreground))',
