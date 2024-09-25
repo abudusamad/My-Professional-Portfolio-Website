@@ -3,46 +3,55 @@
 import { Button } from "@/components/ui/button";
 import { Loader2 } from "lucide-react";
 import { useState } from "react";
-import { FaGithub } from "react-icons/fa";
-import { FcGoogle } from "react-icons/fc";
-import { signIn } from "@/auth";
+import { signIn } from "next-auth/react";
+import { GoogleLogo } from "./google-logo";
+import { GitHubLogo } from "./github-logo";
 
 export const Social = () => {
-  const [googleLoading] = useState(false);
-  const [githubLoading] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [googleLoading, setGoogleLoading] = useState(false);
+  const [githubLoading, setGithubLoading] = useState(false);
 
-  const SignInWithProvider = async (value: "github" | "google") => {
-    setLoading(true);
+  const SignInWithProvider = async (provider: "github" | "google") => {
+    if (provider === "google") {
+      setGoogleLoading(true);
+    } else if (provider === "github") {
+      setGithubLoading(true);
+    }
 
-    await signIn(value).finally(() => {
-      setLoading(false);
+    await signIn(provider).finally(() => {
+      if (provider === "google") {
+        setGoogleLoading(false);
+      } else if (provider === "github") {
+        setGithubLoading(false);
+      }
     });
   };
   return (
     <div className="flex items-center w-full gap-x-2">
-      <Button size="lg" className="w-full" variant="outline" disabled={loading}>
+      <Button
+        size="lg"
+        className="w-full"
+        variant="outline"
+        disabled={googleLoading}
+        onClick={() => SignInWithProvider("google")}
+      >
         {googleLoading ? (
-          <Loader2 className="size-4 animate-spin" />
+          <Loader2 className="h-5 w-5 animate-spin" />
         ) : (
-          <span className="h-5 w-5">
-            <FcGoogle />
-          </span>
+          <GoogleLogo className="h-5 w-5" />
         )}
       </Button>
       <Button
         size="lg"
         className="w-full"
         variant="outline"
-        disabled={loading}
+        disabled={githubLoading}
         onClick={() => SignInWithProvider("github")}
       >
         {githubLoading ? (
-          <Loader2 className="size-4 animate-spin" />
+          <Loader2 className="h-5 w-5 animate-spin" />
         ) : (
-          <span className="h-5 w-5">
-            <FaGithub />
-          </span>
+          <GitHubLogo className="h-5 w-5" />
         )}
       </Button>
     </div>
