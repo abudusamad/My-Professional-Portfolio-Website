@@ -1,18 +1,18 @@
-import { CardWrapper } from "@/components/auth/card-wrapper";
+import { RegisterForm } from "@/components/auth/register-form";
+import { Suspense } from "react";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Register",
+  description: "Register for an account",
+};
 
 const RegisterPage = () => {
-    return (<div>
-        <CardWrapper
-            headerLabel="Register your account"
-            backButtonHref="/"
-            backButtonLabel="Sign in here"
-            showSocial
-        >
-            <div>
-                <h1>Register</h1>
-            </div>
-        </CardWrapper>
-    </div> );
-}
- 
+  return (
+    <Suspense>
+      <RegisterForm />
+    </Suspense>
+  );
+};
+
 export default RegisterPage;
