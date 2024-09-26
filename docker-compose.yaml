@@ -1,29 +1,31 @@
 services:
-  app-prod:
+  next-app:
+    container_name: myprofessionalwebsite
     build:
       context: .
-      args:
-        - NODE_ENV=production
-    ports:
-      - '3000:3000'
+      dockerfile: ./Dockerfile
 
-  app-dev:
-    build:
-      context: .
-      target: deps
-    command: npm run dev
-    ports:
-      - '3001:3000'
+    # Set environment variables directly in the docker-compose file
     environment:
-      - NODE_ENV=development
-      - TEST_KEYCLOAK_USERNAME
-      - TEST_KEYCLOAK_PASSWORD
-      - AUTH_KEYCLOAK_ID
-      - AUTH_KEYCLOAK_SECRET
-      - AUTH_KEYCLOAK_ISSUER
-      - AUTH_SECRET="MohY0/2zSQw/psWEnejC2ka3Al0oifvY4YjOkUaFfnI="
-      - AUTH_URL=http://localhost:3000/auth
+      ENV_VARIABLE: ${ENV_VARIABLE}
+      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
+
+    # Set environment variables based on the .env file
+    env_file:
+      - .env
     volumes:
-      - .:/app
-      - /app/node_modules
-      - /app/.next
+      - ./next-app/src:/app/src
+      - ./next-app/public:/app/public
+    restart: always
+    ports:
+      - 3000:3000
+    networks:
+      - my_network
+
+  # Add more containers below (nginx, postgres, etc.)
+
+# Define a network, which allows containers to communicate
+# with each other, by using their container name as a hostname
+networks:
+  my_network:
+    external: true
