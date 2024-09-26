@@ -21,13 +21,16 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email does not exist!" }
   }
+
+
     
     try {
-        await signIn("credentials", {
+      await signIn("credentials", {
             email,
             password,
             redirectTo:callbackUrl || DEFAULT_LOGIN_REDIRECT
         })
+
     }catch (error) {
         if (error instanceof AuthError) {
             switch (error.type) {

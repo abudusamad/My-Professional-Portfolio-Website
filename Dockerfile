@@ -14,6 +14,7 @@ COPY package*.json ./
 COPY prisma ./prisma
 ARG NODE_ENV
 ENV NODE_ENV $NODE_ENV
+
 RUN corepack enable npm && npm i --frozen-lockfile
 
 
@@ -23,7 +24,6 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-
 RUN npm install -g npm && npm run build
 
 

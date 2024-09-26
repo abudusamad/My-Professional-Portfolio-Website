@@ -41,7 +41,8 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
 
       return true
     }
-  },
+    },
+
   events: {
     async linkAccount({ user }) {
       await db.user.update({
