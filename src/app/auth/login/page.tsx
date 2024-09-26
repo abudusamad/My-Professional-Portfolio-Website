@@ -1,20 +1,18 @@
-import { CardWrapper } from "@/components/auth/card-wrapper";
+import { LoginForm } from "@/components/auth/login-form";
+import { Suspense } from "react";
+import { Metadata } from "next";
 
-const LoginPage = () => {
+export const metadata: Metadata = {
+  title: "Login",
+  description: "Login to your account",
+};
+
+const AuthLogin = () => {
   return (
-    <div>
-      <CardWrapper
-        headerLabel="Login Ling"
-        backButtonHref="/"
-        backButtonLabel="Sign in here"
-        showSocial
-      >
-        <div>
-          <h1>Login</h1>
-        </div>
-      </CardWrapper>
-    </div>
+    <Suspense>
+      <LoginForm />
+    </Suspense>
   );
 };
 
-export default LoginPage;
+export default AuthLogin;
