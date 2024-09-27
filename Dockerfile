@@ -24,7 +24,7 @@ FROM base AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
-RUN npm install -g npm && npm run build
+RUN npm run build
 
 
 # Stage 3: Production image
@@ -35,8 +35,8 @@ WORKDIR /app
 ENV NODE_ENV=production
 
 #set the correct permissions for prerender cache
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
+RUN addgroup --system --gid 1001 nodejs && \
+    adduser --system --uid 1001 nextjs
 
 # Copy built files and necessary assets from the builder stage
 COPY --from=builder /app/.next ./.next
@@ -47,9 +47,7 @@ COPY --from=builder /app/prisma ./prisma
 COPY --from=builder /app/tailwind.config.ts ./tailwind.config.ts
 COPY --from=builder /app/next.config.mjs ./next.config.mjs
 COPY --from=builder /app/jsconfig.json ./jsconfig.json
-COPY --from=builder /app/.env ./.env
 COPY --from=builder /app/postcss.config.mjs ./postcss.config.mjs
-
 COPY --from=builder --chown=nextjs:nodejs /app/.next/standalone ./
 COPY --from=builder --chown=nextjs:nodejs /app/.next/static ./.next/static
 

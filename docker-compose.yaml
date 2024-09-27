@@ -27,24 +27,24 @@ services:
     networks:
       - my_network
     depends_on:
-      - nginx  # Ensuring nginx service starts before next-app
+      # - nginx  # Ensuring nginx service starts before next-app
       - redis  # Ensuring redis service starts before next-app
 
-  nginx:
-    image: nginx:latest
-    container_name: my_nginx
-    ports:
-      - "80:80"  # Exposing port 80
-    volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf  # Mounting Nginx config file
-    networks:
-      - my_network
+  # nginx:
+  #   image: nginx:latest
+  #   container_name: my_nginx
+  #   ports:
+  #     - "93:80"  # Exposing port 80
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/nginx.conf  # Mounting Nginx config file
+  #   networks:
+  #     - my_network
 
   redis:
     image: redis:latest
     container_name: my_redis
     ports:
-      - "6379:6379"  # Exposing port 6379
+      - "6380:6379"  # Exposing port 6379
     networks:
       - my_network
   
