@@ -1,3 +1,4 @@
+
 services:
   next-app:
     container_name: myprofessionalwebsite
@@ -7,9 +8,13 @@ services:
 
     # Set environment variables directly in the docker-compose file
     environment:
-      ENV_VARIABLE: ${ENV_VARIABLE}
-      NEXT_PUBLIC_ENV_VARIABLE: ${NEXT_PUBLIC_ENV_VARIABLE}
-
+      - DATABASE_URL=${DATABASE_URL}
+      - AUTH_SECRET=${AUTH_SECRET}
+      - AUTH_GITHUB_ID=${AUTH_GITHUB_ID}
+      - AUTH_GITHUB_SECRET=${AUTH_GITHUB_SECRET}
+      - AUTH_GOOGLE_ID=${AUTH_GOOGLE_ID}
+      - AUTH_GOOGLE_SECRET=${AUTH_GOOGLE_SECRET}
+      - REDIS_URL=${REDIS_URL}
     # Set environment variables based on the .env file
     env_file:
       - .env
@@ -21,7 +26,28 @@ services:
       - 3000:3000
     networks:
       - my_network
+    depends_on:
+      - nginx  # Ensuring nginx service starts before next-app
+      - redis  # Ensuring redis service starts before next-app
 
+  nginx:
+    image: nginx:latest
+    container_name: my_nginx
+    ports:
+      - "80:80"  # Exposing port 80
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf  # Mounting Nginx config file
+    networks:
+      - my_network
+
+  redis:
+    image: redis:latest
+    container_name: my_redis
+    ports:
+      - "6379:6379"  # Exposing port 6379
+    networks:
+      - my_network
+  
   # Add more containers below (nginx, postgres, etc.)
 
 # Define a network, which allows containers to communicate
@@ -29,3 +55,4 @@ services:
 networks:
   my_network:
     external: true
+    driver: bridge
