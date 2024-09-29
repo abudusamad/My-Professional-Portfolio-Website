@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import { PluginAPI } from "tailwindcss/types/config";
 
 const config: Config = {
     darkMode: ["class"],
@@ -15,8 +16,12 @@ const config: Config = {
 				  to: { width: '0%' },
 			  },
 		  },
+		   clipPath: {
+        'custom-polygon': 'polygon(0 0, 46% 0, 79% 100%, 0% 100%)',
+      },
 		   animation: {
         'border-t': 'border-t 5s linear forwards',
+		
       },
   		colors: {
   			background: 'hsl(var(--background))',
@@ -67,6 +72,16 @@ const config: Config = {
   		}
   	}
   },
-  plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate"),
+		function ({ addUtilities }:PluginAPI) {
+      const newUtilities = {
+        '.clip-path-custom': {
+          'clip-path': 'polygon(0 0, 46% 0, 79% 100%, 0% 100%)',
+        },
+      };
+      addUtilities(newUtilities,);
+    },
+	  
+  ],
 };
 export default config;

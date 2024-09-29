@@ -1,20 +1,17 @@
 import Image from "next/image";
 import Link from "next/link";
-import { BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
-import { FaFacebook } from "react-icons/fa";
 import { MdDownload } from "react-icons/md";
 import { RiContactsFill } from "react-icons/ri";
-import { SiLeetcode } from "react-icons/si";
+
 
 import { personalData } from "@/data/personal-data";
-
-const socialLinks = [
-  { href: personalData.github, icon: BsGithub },
-  { href: personalData.linkedIn, icon: BsLinkedin },
-  { href: personalData.facebook, icon: FaFacebook },
-  { href: personalData.leetcode, icon: SiLeetcode },
-  { href: personalData.twitter, icon: BsTwitter },
-];
+// const socialLinks = [
+//   { href: personalData.github, icon: BsGithub },
+//   { href: personalData.linkedIn, icon: BsLinkedin },
+//   { href: personalData.facebook, icon: FaFacebook },
+//   { href: personalData.leetcode, icon: SiLeetcode },
+//   { href: personalData.twitter, icon: BsTwitter },
+// ];
 
 export const HeroSection = () => {
   return (
@@ -23,62 +20,75 @@ export const HeroSection = () => {
         src="/hero.svg"
         alt="Hero"
         width={1572}
-        height={795}
+        height={1795}
         className="absolute -top-[98px] -z-10"
       />
+      <div className="flex flex-col max-w-3xl items-center justify-center p-2 pb-20 md:pb-10 lg:pt-10">
+        <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
+          Hello, This is <br />
+          <span className=" text-pink-500">{personalData.name}</span>
+          {` , I'm a Professional `}
+          <span className=" text-[#16f2b3]">{personalData.designation}</span>.
+        </h1>
+
+        {/* Social Links */}
+        {/* <div className="my-12 flex items-center gap-5">
+          {socialLinks.map(({ href, icon: Icon }, index) => (
+            <Link
+              key={index}
+              href={href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all text-pink-500 hover:scale-125 duration-300"
+            >
+              <Icon size={30} />
+            </Link>
+          ))}
+        </div> */}
+
+        {/* Action Buttons */}
+        <div className="flex items-center gap-3">
+          <Link
+            href="#contact"
+            className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r to-pink-500 from-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out md:font-semibold"
+            role="button"
+          >
+            <span>Contact me</span>
+            <RiContactsFill size={16} />
+          </Link>
+
+          <Link
+            href={personalData.resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out md:font-semibold"
+            role="button"
+          >
+            <span>Get Resume</span>
+            <MdDownload size={16} />
+          </Link>
+        </div>
+      </div>
 
       <div className="grid grid-cols-1 items-start lg:grid-cols-2 lg:gap-12 gap-y-8">
         {/* Left Column */}
-        <div className="order-2 lg:order-1 flex flex-col items-start justify-center p-2 pb-20 md:pb-10 lg:pt-10">
-          <h1 className="text-3xl font-bold leading-10 text-white md:font-extrabold lg:text-[2.6rem] lg:leading-[3.5rem]">
-            Hello, <br />
-            This is <span className=" text-pink-500">{personalData.name}</span>
-            {` , I'm a Professional `}
-            <span className=" text-[#16f2b3]">{personalData.designation}</span>.
-          </h1>
 
-          {/* Social Links */}
-          <div className="my-12 flex items-center gap-5">
-            {socialLinks.map(({ href, icon: Icon }, index) => (
-              <Link
-                key={index}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="transition-all text-pink-500 hover:scale-125 duration-300"
-              >
-                <Icon size={30} />
-              </Link>
-            ))}
-          </div>
-
-          {/* Action Buttons */}
-          <div className="flex items-center gap-3">
-            <Link
-              href="#contact"
-              className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r to-pink-500 from-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out md:font-semibold"
-              role="button"
-            >
-              <span>Contact me</span>
-              <RiContactsFill size={16} />
-            </Link>
-
-            <Link
-              href={personalData.resume}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out md:font-semibold"
-              role="button"
-            >
-              <span>Get Resume</span>
-              <MdDownload size={16} />
-            </Link>
+        <div className=" relative flex items-center">
+          <div className="w-[65%] h-full absolute left-0 top-0 z-[-1] transition-all duration-400 ease-in-out clip-path-custom  bg-[#16f2b3]" />
+          <div className=" ml-16 h-[90%] w-[68%] bg-black rounded-[var(--br-sm-2)] transition-all duration-400 ease-in-out">
+            <Image
+              className=" object-cover transition-all duration-400 ease-in-out grayscale hover:grayscale-0"
+              src="/mascot.jpeg"
+              alt="image description"
+              width={500}
+              height={500}
+            />
           </div>
         </div>
 
         {/* Right Column */}
 
-        <div className="order-1 lg:order-2 relative rounded-lg border border-[#1b2c68a0] bg-gradient-to-r from-[#0d1224] to-[#0a0d37]">
+        <div className="relative rounded-lg border border-[#1b2c68a0] bg-gradient-to-r from-[#0d1224] to-[#0a0d37]">
           {/* Gradient Lines */}
           <div className="flex">
             <div className="h-[1px] w-full bg-gradient-to-r from-transparent via-pink-500 to-violet-600"></div>
