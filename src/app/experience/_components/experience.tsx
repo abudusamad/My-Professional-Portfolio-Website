@@ -5,7 +5,8 @@ import Image from "next/image";
 import { BsPersonWorkspace } from "react-icons/bs";
 import experience from "../../../../public/lottie/code1.json";
 import { experiences } from "@/data/experience";
-import GlowCard from "@/helper/glow-card";
+import { GlowCard } from "@/helper/glow-card";
+
 
 const Experience = () => {
   return (

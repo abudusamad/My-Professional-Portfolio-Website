@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/helper/glow-card.jsx", "src/data/skills-image.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/helper/glow-card.tsx", "src/data/skills-image.js", "src/helper/animation-lottie.tsx"],
   "exclude": ["node_modules"]
 }

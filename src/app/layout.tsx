@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
+import "./style/card.css";
 import { siteConfig } from "@/config/site";
 import { Navbar } from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
