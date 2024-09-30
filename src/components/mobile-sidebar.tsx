@@ -34,11 +34,11 @@ export const MobileSidebar = () => {
 
   return (
     <>
-      <Button onClick={onOpen} variant="ghost" className="md:hidden pr-4">
+      <Button onClick={onOpen} variant="ghost" className="md:hidden pr-4 text-white">
         <Menu />
       </Button>
       <Sheet open={isOpen} onOpenChange={onClose}>
-        <SheetContent side="left" className="p-0 bg-white">
+        <SheetContent side="left" className="p-0  bg-[#0d1224]">
           <Sidebar />
         </SheetContent>
       </Sheet>
