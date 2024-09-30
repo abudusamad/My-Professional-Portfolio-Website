@@ -1,5 +1,10 @@
 import Image from "next/image";
 
 export const Logo = () => {
-  return <Image height={130} width={130} alt="logo" src="/logo.svg" />;
+    return (
+      <div className="flex items-center space-x-4 justify-center">
+            <Image height={45} width={45} alt="logo" src="/logo.png" />
+            <p>Abudu Samadu</p>
+      </div>
+    );
 };

@@ -38,10 +38,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <div className="h-[80px] md:pl-56 fixed inset-y-0 w-full z-50">
+        <div className="h-[80px] fixed inset-y-0 w-full z-50">
           <Navbar />
         </div>
-        <div className="hidden h-full md:flex w-56 flex-col fixed inset-y-0 z-50">
+        <div className="hidden top-[80px] md:flex w-64 flex-col fixed inset-y-0 z-50">
           <Sidebar />
         </div>
         <main className="min-h-screen relative md:pl-56 pt-[80px] mx-auto px-4 sm:px-12 lg:max-w-[76rem] xl:max-w-[80rem] 2xl:max-w-[100rem] text-white ">

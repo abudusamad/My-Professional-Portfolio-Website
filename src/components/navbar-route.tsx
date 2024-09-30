@@ -1,28 +1,27 @@
 "use client";
 
-
 import { usePathname } from "next/navigation";
 import { LogOut } from "lucide-react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-// import { SearchInput } from "./search-input";
+import { SearchInput } from "./search-input";
 
 export const NavbarRoutes = () => {
   const pathname = usePathname();
 
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isCoursePage = pathname?.includes("/courses");
-//   const isSearchPage = pathname === "/search";
-
+  const isSearchPage = pathname === "/projects";
   return (
-    <>
-      {/* {isSearchPage && (
-        <div className="hidden md:block">
+    <div className="flex  items-center justify-between w-full">
+      <div className="flex-1" />
+      {isSearchPage && (
+        <div className=" flex flex-auto items-start justify-center">
           <SearchInput />
         </div>
-      )} */}
+      )}
       <div className="flex gap-x-2 ml-auto">
         {isTeacherPage || isCoursePage ? (
           <Link href="/">
@@ -31,7 +30,7 @@ export const NavbarRoutes = () => {
               Exit
             </Button>
           </Link>
-        ) :  (
+        ) : (
           <Link href="/teacher/courses">
             <Button size="sm" variant="ghost">
               Teacher mode
@@ -40,6 +39,6 @@ export const NavbarRoutes = () => {
         )}
         {/* <UserButton afterSignOutUrl="/" /> */}
       </div>
-    </>
+    </div>
   );
 };
