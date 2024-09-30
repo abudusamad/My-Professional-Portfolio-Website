@@ -11,7 +11,7 @@ const Experience = () => {
   return (
     <div
       id="experience"
-      className="relative z-50 border-t my-12 lg:my-24 border-[#25213b]"
+      className="relative z-10 border-t my-12 lg:my-24 border-[#25213b]"
     >
       <Image
         src="/section.svg"

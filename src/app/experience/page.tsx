@@ -2,6 +2,7 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import Experience from "./_components/experience";
+import { Skills } from "../skills/_components/skills";
 
 export const metadata: Metadata = {
   title: "experiences",
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 const AuthLogin = () => {
   return (
     <Suspense>
-      <Experience/>
+      <Experience />
+      <Skills />
     </Suspense>
   );
 };
