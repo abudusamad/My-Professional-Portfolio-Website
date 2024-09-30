@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 import { SearchInput } from "./search-input";
+import { UserMenu } from "./user-menu";
 
 export const NavbarRoutes = () => {
   const pathname = usePathname();
@@ -37,7 +38,7 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         )}
-        {/* <UserButton afterSignOutUrl="/" /> */}
+        <UserMenu />
       </div>
     </div>
   );
