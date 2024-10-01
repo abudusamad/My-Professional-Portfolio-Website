@@ -8,6 +8,7 @@ import { LoginSchema } from "@/schemas";
 import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { AuthError } from "next-auth";
+import { generateVerificationTokenByEmail } from "@/lib/tokens";
 
 export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: string | null) => {
     const validatedFields = LoginSchema.safeParse(values);
@@ -21,6 +22,12 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
   if (!existingUser || !existingUser.email || !existingUser.password) {
     return { error: "Email does not exist!" }
   }
+    
+    if (!existingUser.emailVerified) {
+        const verificationToken = await generateVerificationTokenByEmail(
+            existingUser.email
+        )
+    }
 
 
     
