@@ -5,13 +5,7 @@ import { RiContactsFill } from "react-icons/ri";
 
 
 import { personalData } from "@/data/personal-data";
-// const socialLinks = [
-//   { href: personalData.github, icon: BsGithub },
-//   { href: personalData.linkedIn, icon: BsLinkedin },
-//   { href: personalData.facebook, icon: FaFacebook },
-//   { href: personalData.leetcode, icon: SiLeetcode },
-//   { href: personalData.twitter, icon: BsTwitter },
-// ];
+
 
 export const HeroSection = () => {
   return (
@@ -32,19 +26,7 @@ export const HeroSection = () => {
         </h1>
 
         {/* Social Links */}
-        {/* <div className="my-12 flex items-center gap-5">
-          {socialLinks.map(({ href, icon: Icon }, index) => (
-            <Link
-              key={index}
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="transition-all text-pink-500 hover:scale-125 duration-300"
-            >
-              <Icon size={30} />
-            </Link>
-          ))}
-        </div> */}
+      
 
         {/* Action Buttons */}
         <div className="flex items-center gap-3">

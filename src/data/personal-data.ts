@@ -7,11 +7,11 @@ export const personalData = {
   phone: '+233 248 666 037',
   address: 'Middle Badda, Dhaka, Bangladesh - 1212 ',
   github: 'https://github.com/abudusamad',
-  facebook: 'https://www.facebook.com/abusaid.riyaz/',
-  linkedIn: 'https://www.linkedin.com/in/abudusamad123',
-  twitter: 'https://twitter.com/said7388',
+  facebook: 'https://web.facebook.com/mastechonology',
+  linkedIn: 'https://www.linkedin.com/in/abudu1234/',
+  twitter: 'https://x.com/MascotFord',
   stackOverflow: 'https://stackoverflow.com/users/16840768/abu-said',
-  leetcode: "https://leetcode.com/said3812/",
-  devUsername: "said7388",
+  leetcode: "https://leetcode.com/u/abudusamad/",
+  devUsername: "abudusamed",
   resume: "https://drive.google.com/file/d/1eyutpKFFhJ9X-qpQGKhUNnVRkB5Wer00/view?usp=sharing"
 }
