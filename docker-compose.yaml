@@ -15,12 +15,14 @@ services:
       - AUTH_GOOGLE_ID=${AUTH_GOOGLE_ID}
       - AUTH_GOOGLE_SECRET=${AUTH_GOOGLE_SECRET}
       - REDIS_URL=${REDIS_URL}
+      - NEXT_PUBLIC_URL=${NEXT_PUBLIC_URL}
+      - RESEND_API_KEY=${RESEND_API_KEY}
     # Set environment variables based on the .env file
     env_file:
       - .env
     volumes:
       - ./next-app/src:/app/src
-      - ./next-app/public:/app/public
+      # - ./next-app/public:/app/public
     restart: always
     ports:
       - 3000:3000
