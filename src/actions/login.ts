@@ -38,7 +38,7 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?:st
       verificationToken.token,
     );
 
-    return { success: "Confirmation email sent!" };
+    return { success: "Verification email sent!" };
   }
     
 	try {
@@ -55,7 +55,7 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?:st
 				case "CredentialsSignin":
 					return { error: "Invalid credentials" };
 				default:
-					return {error: "Invalid credentials!"}
+					return {error: "Something went wrong!"}
 			}
 		}
 		throw error;
