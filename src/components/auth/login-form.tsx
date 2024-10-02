@@ -54,10 +54,10 @@ export const LoginForm = () => {
             form.reset();
             setError(data.error);
           }
-          // if (data?.success) {
-          //   form.reset();
-          //   setSuccess(data.success);
-          // }
+          if (data?.success) {
+            form.reset();
+            setSuccess(data.success);
+          }
         })
         .catch(() => {
           setError("Something went wrong!");
@@ -144,11 +144,7 @@ export const LoginForm = () => {
             type="submit"
             className="w-full"
           >
-            {isPending ? (
-              <Loader2 className="h-5 w-5 animate-spin" />
-            ) : (
-              "Login"
-            )}
+            {isPending ? <Loader2 className="h-5 w-5 animate-spin" /> : "Login"}
           </Button>
         </form>
       </Form>

@@ -9,6 +9,7 @@ import { signIn } from "@/auth";
 import { DEFAULT_LOGIN_REDIRECT } from "@/routes";
 import { AuthError } from "next-auth";
 import { generateVerificationTokenByEmail } from "@/lib/tokens";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: string | null) => {
     const validatedFields = LoginSchema.safeParse(values);
@@ -27,8 +28,13 @@ export const login = async (values: z.infer<typeof LoginSchema>, callbackUrl?: s
         const verificationToken = await generateVerificationTokenByEmail(
             existingUser.email
         )
-    }
+        await sendVerificationEmail(
+            verificationToken.email,
+            verificationToken.token
+        )
 
+        return{ success : "Verification email sent!" }
+    }
 
     
     try {
