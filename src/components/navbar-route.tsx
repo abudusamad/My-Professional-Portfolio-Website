@@ -15,6 +15,7 @@ export const NavbarRoutes = () => {
   const isTeacherPage = pathname?.startsWith("/teacher");
   const isCoursePage = pathname?.includes("/courses");
   const isSearchPage = pathname === "/projects";
+
   return (
     <div className="flex  items-center justify-between w-full">
       <div className="flex-1" />

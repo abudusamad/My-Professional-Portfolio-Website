@@ -17,7 +17,7 @@ datasource db {
 }
 
 
-enum Role {
+enum UserRole {
   USER
   ADMIN
 }
@@ -36,7 +36,7 @@ password     String?
 bio          String?
 image        String?
 emailVerified DateTime?
-role         Role             @default(USER)
+role         UserRole             @default(USER)
 projects     Project[]
 blogPosts    BlogPost[]
 education    Education[]
@@ -46,6 +46,9 @@ jobs          Job[]
 contacts      Contact[]
 sessions     Session[]
 accounts     Account[]
+
+createdAt    DateTime @default(now())
+updatedAt    DateTime @updatedAt
 
 }
 
@@ -92,7 +95,7 @@ model VerificationToken {
 model PasswordResetToken {
   id         String @id @default(cuid())
   email      String
-  token      String
+  token      String @unique
   expires    DateTime
  
   @@unique([email, token])
