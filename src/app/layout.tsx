@@ -7,6 +7,7 @@ import { Navbar } from "@/components/navbar";
 import { Sidebar } from "@/components/sidebar";
 import { SessionProvider } from "next-auth/react";
 import { Footer } from "@/components/footer";
+import { Provider } from "@/providers/Providers";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -49,8 +50,9 @@ export default function RootLayout({
             <Sidebar />
           </div>
           <main className="min-h-screen relative md:pl-72 pt-[80px] mx-auto px-4 sm:px-12 lg:max-w-[76rem] xl:max-w-[80rem] 2xl:max-w-[100rem] text-white ">
+            <Provider />
             {children}
-          <Footer />
+            <Footer />
           </main>
         </body>
       </html>

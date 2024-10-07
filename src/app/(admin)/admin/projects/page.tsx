@@ -19,13 +19,11 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Skeleton } from "@/components/ui/skeleton";
-
-
 import { ProjectSchema } from "@/schemas";
 import { Container } from "@/components/container";
+import { Skeleton } from "@/components/ui/skeleton";
 
-const AdminNewPage = () => {
+const AdminPage = () => {
   const [isLoading, setIsLoading] = useState(true);
   const router = useRouter();
   const form = useForm<z.infer<typeof ProjectSchema>>({
@@ -54,7 +52,7 @@ const AdminNewPage = () => {
   }, []);
 
   if (isLoading) {
-    return <AdminNewPage.Skeleton />;
+    return <AdminPage.Skeleton />;
   }
 
   return (
@@ -67,7 +65,7 @@ const AdminNewPage = () => {
           >
             <FormField
               control={form.control}
-              title="title"
+              name="title"
               render={({ field }) => (
                 <FormItem>
                   <FormLabel className="text-xl">Project Title</FormLabel>
@@ -116,9 +114,9 @@ const AdminNewPage = () => {
   );
 };
 
-export default AdminNewPage;
+export default AdminPage;
 
-AdminNewPage.Skeleton = function AdminNewPageSkeleton() {
+AdminPage.Skeleton = function AdminPageSkeleton() {
   return (
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
       <div>
