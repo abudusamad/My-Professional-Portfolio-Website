@@ -111,10 +111,10 @@ model Project {
   id          String   @id @default(cuid())
   userId      String
   techId      String
-  title       String?
-  description String?
-  link        String
-  image_url   String
+  title       String
+  description String
+  link        String?
+  image_url   String?
   isPublished Boolean
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt

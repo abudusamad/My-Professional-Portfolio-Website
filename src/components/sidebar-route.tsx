@@ -1,12 +1,11 @@
 "use client";
 
 import {
-  BarChart,
   Blend,
   Book,
   Compass,
   Layout,
-  List,
+
   ListCheck,
   Projector,
 } from "lucide-react";
@@ -56,16 +55,31 @@ const guestRoutes = [
   },
 ];
 
-const teacherRoutes = [
+const adminRoute = [
   {
-    icon: List,
-    label: "Courses",
-    href: "/teacher/courses",
+    icon: Compass,
+    label: "Experience",
+    href: "/admin/experience",
   },
   {
-    icon: BarChart,
-    label: "Analytics",
-    href: "/teacher/analytics",
+    icon: ListCheck,
+    label: "Skills",
+    href: "/admin/skills",
+  },
+  {
+    icon: Book,
+    label: "Education",
+    href: "/admin/education",
+  },
+  {
+    icon: Blend,
+    label: "Blogs",
+    href: "/admin/blog",
+  },
+  {
+    icon: Projector,
+    label: "Projects",
+    href: "/admin/projects",
   },
 ];
 
@@ -73,9 +87,9 @@ export const SidebarRoutes = () => {
   const pathname = usePathname();
   const { data: session } = useSession();
 
-  const isTeacherPage = pathname?.includes("/teacher");
+  const isAdmin = pathname?.includes("/admin");
 
-  const routes = isTeacherPage ? teacherRoutes : guestRoutes;
+  const routes = isAdmin ? adminRoute : guestRoutes;
 
   return (
     <div className="flex flex-col item-start justify-between h-full ">
