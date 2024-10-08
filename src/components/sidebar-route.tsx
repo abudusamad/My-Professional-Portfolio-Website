@@ -6,7 +6,7 @@ import {
   Compass,
   Layout,
 
-  ListCheck,
+  ListChecks,
   Projector,
 } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -34,7 +34,7 @@ const guestRoutes = [
     href: "/experience",
   },
   {
-    icon: ListCheck,
+    icon: ListChecks,
     label: "Skills",
     href: "/skills",
   },
@@ -62,7 +62,7 @@ const adminRoute = [
     href: "/admin/experience",
   },
   {
-    icon: ListCheck,
+    icon: ListChecks,
     label: "Skills",
     href: "/admin/skills",
   },

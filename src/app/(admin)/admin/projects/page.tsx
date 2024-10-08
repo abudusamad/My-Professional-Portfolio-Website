@@ -6,8 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -19,9 +17,12 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { ProjectSchema } from "@/schemas";
-import { Container } from "@/components/container";
+
 import { Skeleton } from "@/components/ui/skeleton";
+import { useEffect, useState } from "react";
+import { toast } from "react-toastify";
+import { Container } from "@/components/container";
+import { ProjectSchema } from "@/schemas";
 
 const AdminPage = () => {
   const [isLoading, setIsLoading] = useState(true);
@@ -38,10 +39,10 @@ const AdminPage = () => {
   const onSubmit = async (values: z.infer<typeof ProjectSchema>) => {
     try {
       const response = await axios.post("/api/admin/create", values);
-      router.push(`/admin/projects/${response.data.id}`);
+      router.push(`/admin/admin/${response.data.id}`);
       console.log(response.data.id);
       console.log(values);
-      toast.success("Project Created");
+      toast.success("Project created");
     } catch {
       toast.error("Something went wrong");
     }
@@ -72,7 +73,7 @@ const AdminPage = () => {
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Enter project title' "
+                      placeholder="e.g. 'Enter Video title '"
                       {...field}
                     />
                   </FormControl>
@@ -85,11 +86,11 @@ const AdminPage = () => {
               name="description"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-xl">Project Description</FormLabel>
+                  <FormLabel className="text-xl">Project description</FormLabel>
                   <FormControl>
                     <Input
                       disabled={isSubmitting}
-                      placeholder="e.g. 'Enter project description' "
+                      placeholder="e.g. 'Enter video description"
                       {...field}
                     />
                   </FormControl>
@@ -120,9 +121,9 @@ AdminPage.Skeleton = function AdminPageSkeleton() {
   return (
     <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
       <div>
-        <h1 className="text-2xl">Project Name</h1>
+        <h1 className="text-2xl">Name your Project</h1>
         <p className="text-sm text-slate-600">
-          What would you like to name your course? Don&apos;t worry, you can
+          What would you like to name your Project? Don&apos;t worry, you can
           change this later.
         </p>
         <div className="space-y-8 mt-8">
