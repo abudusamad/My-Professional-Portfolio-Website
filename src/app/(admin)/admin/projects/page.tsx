@@ -21,7 +21,6 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
-import { Container } from "@/components/container";
 import { ProjectSchema } from "@/schemas";
 
 const AdminPage = () => {
@@ -57,61 +56,58 @@ const AdminPage = () => {
   }
 
   return (
-    <Container>
-      <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6">
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="space-y-8 mt-8"
-          >
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-xl">Project Title</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="e.g. 'Enter Video title '"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="description"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel className="text-xl">Project description</FormLabel>
-                  <FormControl>
-                    <Input
-                      disabled={isSubmitting}
-                      placeholder="e.g. 'Enter video description"
-                      {...field}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex items-center gap-x-2">
-              <Link href="/">
-                <Button type="button" variant="ghost">
-                  Cancel
-                </Button>
-              </Link>
-              <Button type="submit" disabled={!isValid || isSubmitting}>
-                Continue
+    <div className="max-w-5xl  mx-auto flex md:items-center md:justify-center h-full p-6 text-white">
+      <Form {...form}>
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
+          <FormField
+            control={form.control}
+            name="title"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-xl">Project Title</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={isSubmitting}
+                    placeholder="e.g. 'Enter Video title '"
+                    {...field}
+                    className="text-white"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <FormField
+            control={form.control}
+            name="description"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel className="text-xl">Project description</FormLabel>
+                <FormControl>
+                  <Input
+                    disabled={isSubmitting}
+                    placeholder="e.g. 'Enter video description"
+                    {...field}
+                    className="text-white"
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <div className="flex items-center gap-x-2">
+            <Link href="/">
+              <Button type="button" variant="ghost">
+                Cancel
               </Button>
-            </div>
-          </form>
-        </Form>
-      </div>
-    </Container>
+            </Link>
+            <Button type="submit" disabled={!isValid || isSubmitting}>
+              Continue
+            </Button>
+          </div>
+        </form>
+      </Form>
+    </div>
   );
 };
 

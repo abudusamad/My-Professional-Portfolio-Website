@@ -1,9 +1,14 @@
+
+"use client";
+
+
 import Link from "next/link";
 
 import { personalData } from "@/data/personal-data";
 import { BsGithub, BsLinkedin, BsTwitter } from "react-icons/bs";
 import { FaFacebook } from "react-icons/fa";
 import { SiLeetcode } from "react-icons/si";
+import { usePathname } from "next/navigation";
 
 const socialLinks = [
   { href: personalData.github, icon: BsGithub },
@@ -14,6 +19,10 @@ const socialLinks = [
 ];
 
 export function Footer() {
+  const pathname = usePathname();
+  const isAdminPath = pathname.includes("/admin");
+  
+  if (isAdminPath) return null;
   return (
     <footer className="relative z-10 border-t border-[#25213b]">
       <div className="mx-auto max-w-7xl overflow-hidden px-6 py-8 sm:py-8 lg:px-8">

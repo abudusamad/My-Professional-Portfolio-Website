@@ -6,7 +6,6 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 
-import { SearchInput } from "./search-input";
 import { UserMenu } from "./user-menu";
 
 export const NavbarRoutes = () => {
@@ -17,13 +16,7 @@ export const NavbarRoutes = () => {
   const isSearchPage = pathname === "/projects";
 
   return (
-    <div className="flex  items-center justify-between w-full">
-      <div className="flex-1" />
-      {isSearchPage && (
-        <div className=" flex  flex-1 justify-center">
-          <SearchInput />
-        </div>
-      )}
+   
       <div className="flex gap-x-2  items-center justify-end">
         {isAdmin || isCoursePage ? (
           <Link href="/">
@@ -33,7 +26,7 @@ export const NavbarRoutes = () => {
             </Button>
           </Link>
         ) : (
-          <Link href="/teacher/courses">
+          <Link href="/admin">
             <Button size="sm" variant="blue">
               Admin
             </Button>
@@ -41,6 +34,6 @@ export const NavbarRoutes = () => {
         )}
         <UserMenu />
       </div>
-    </div>
+    
   );
 };
