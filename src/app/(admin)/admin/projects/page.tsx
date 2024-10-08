@@ -41,7 +41,7 @@ const AdminPage = () => {
       router.push(`/admin/projects/${response.data.id}`);
       console.log(response.data.id);
       console.log(values);
-      toast.success("Course created");
+      toast.success("Project Created");
     } catch {
       toast.error("Something went wrong");
     }

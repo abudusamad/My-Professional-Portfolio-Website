@@ -110,12 +110,12 @@ model TechStack{
 model Project {
   id          String   @id @default(cuid())
   userId      String
-  techId      String
+  techId      String?
   title       String
   description String
   link        String?
   image_url   String?
-  isPublished Boolean
+  isPublished Boolean @default(false)
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
   
