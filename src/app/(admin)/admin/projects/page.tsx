@@ -56,7 +56,7 @@ const AdminPage = () => {
   }
 
   return (
-    <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6 text-white">
+    <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6 bg-inherit">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
           <FormField

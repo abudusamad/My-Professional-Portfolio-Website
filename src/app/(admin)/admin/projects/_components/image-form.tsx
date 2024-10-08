@@ -42,7 +42,7 @@ export const ImageForm = ({ initialData, projectId }: ImageFormProps) => {
   };
 
   return (
-    <div className="mt-6 border bg-slate-100 rounded-md p-4">
+    <div className="mt-6 border bg-inherit rounded-md p-4">
       <div className="font-medium flex items-center justify-between">
         Project image
         <Button onClick={toggleEdit} variant="ghost">
@@ -63,7 +63,7 @@ export const ImageForm = ({ initialData, projectId }: ImageFormProps) => {
       </div>
       {!isEditing &&
         (!initialData.image_url ? (
-          <div className="flex items-center justify-center h-60 bg-slate-200 rounded-md">
+          <div className="flex items-center justify-center h-60 bg-inherit rounded-md">
             <ImageIcon className="h-10 w-10 text-slate-500" />
           </div>
         ) : (

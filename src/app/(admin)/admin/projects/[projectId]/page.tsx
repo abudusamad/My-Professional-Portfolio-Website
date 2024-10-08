@@ -30,7 +30,13 @@ const ProjectIdPage = async ({
     return redirect("/admin/projects");
   }
 
-  const requiredFields = [project.title, project.description, project.image_url,project.techId, project.link];
+  const requiredFields = [
+    project.title,
+    project.description,
+    project.image_url,
+    project.techId,
+    project.link,
+  ];
 
   const totalFields = requiredFields.length;
   const completedFields = requiredFields.filter(Boolean).length;
@@ -40,14 +46,17 @@ const ProjectIdPage = async ({
   const isComplete = requiredFields.every(Boolean);
 
   return (
-    <Container>
+    <>
       {!project.isPublished && (
         <Banner label="This project is unpublished. It will not be visible to the Users." />
       )}
       <div className="p-6">
         <div className="flex items-center justify-between">
           <div className="flex flex-col gap-y-2">
-            <h1 className="text-3xl font-medium">project setup</h1>
+            <h1 className="text-3xl font-medium">Project setup</h1>
+            <span className="text-sm text-slate-100">
+              Complete all fields {completionText}
+            </span>
           </div>
           <ActionForm
             projectId={params.projectId}
@@ -65,7 +74,7 @@ const ProjectIdPage = async ({
           </div>
         </div>
       </div>
-    </Container>
+    </>
   );
 };
 export default ProjectIdPage;
