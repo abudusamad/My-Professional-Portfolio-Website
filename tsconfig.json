@@ -12,6 +12,8 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
+    "outDir": "./dist",
+    "rootDir": "./",
     "plugins": [
       {
         "name": "next"
@@ -21,6 +23,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/helper/glow-card.tsx", "src/data/skills-image.js", "src/helper/animation-lottie.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "src/helper/glow-card.tsx", "src/data/skills-image.js", "src/helper/animation-lottie.tsx","scripts/**/*.ts"],
   "exclude": ["node_modules"]
 }

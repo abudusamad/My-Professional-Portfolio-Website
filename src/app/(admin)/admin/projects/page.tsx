@@ -38,7 +38,7 @@ const AdminPage = () => {
   const onSubmit = async (values: z.infer<typeof ProjectSchema>) => {
     try {
       const response = await axios.post("/api/admin/create", values);
-      router.push(`/admin/admin/${response.data.id}`);
+      router.push(`/admin/projects/${response.data.id}`);
       console.log(response.data.id);
       console.log(values);
       toast.success("Project created");
@@ -56,7 +56,7 @@ const AdminPage = () => {
   }
 
   return (
-    <div className="max-w-5xl  mx-auto flex md:items-center md:justify-center h-full p-6 text-white">
+    <div className="max-w-5xl mx-auto flex md:items-center md:justify-center h-full p-6 text-white">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 mt-8">
           <FormField

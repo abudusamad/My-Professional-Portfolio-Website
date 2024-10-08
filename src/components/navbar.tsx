@@ -12,7 +12,7 @@ export const Navbar = () => {
   const isSearchPage = pathname === "/projects";
 
   return (
-    <div className="p-4 h-full flex items-center #[0d1224] z-10 top-0  justify-between w-full border-b-[1px] shadow-sm px-8 gap-4">
+    <div className="p-4 h-full flex items-center border-[#25213b] bg-[#140e1f] z-10 top-0   justify-between w-full border-b-[1px] shadow-sm px-8 gap-4">
       <div className="flex-grow-0">
         <Logo />
         <MobileSidebar />
