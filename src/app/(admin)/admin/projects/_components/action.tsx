@@ -26,10 +26,10 @@ export const ActionForm = ({
     try {
       setIsLoading(true);
       if (isPublished) {
-        await axios.patch(`/api/admin/project/${projectId}/unpublish`);
+        await axios.patch(`/api/admin/projects/${projectId}/unpublish`);
         toast.success("Project unpublished");
       } else {
-        await axios.patch(`/api/admin/project/${projectId}/publish`);
+        await axios.patch(`/api/admin/projects/${projectId}/publish`);
         toast.success("Project published");
       }
       router.refresh();
@@ -43,12 +43,12 @@ export const ActionForm = ({
   const onDelete = async () => {
     try {
       setIsLoading(true);
-      await axios.delete(`/api/admin/project/${projectId}`);
-      toast.success("Chapter deleted");
+      await axios.delete(`/api/admin/projects/${projectId}`);
+      toast.success("Project  deleted");
       router.refresh();
       router.push(`/admin/projects`);
     } catch {
-      toast.error("Something went wrong");
+      toast.error("Something went wrong")
     } finally {
       setIsLoading(false);
     }

@@ -47,7 +47,7 @@ export const ProjectUpdate = ({
 
   const onSubmit = async (values: z.infer<typeof ProjectSchema>) => {
     try {
-      await axios.patch(`/api/admin/project/${projectId}`, values);
+      await axios.patch(`/api/admin/projects/${projectId}`, values);
       toast.success("Project updated");
       toggleEdit();
       router.refresh();

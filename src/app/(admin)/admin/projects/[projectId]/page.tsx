@@ -1,12 +1,12 @@
-import getCurrentUser from "@/actions/get-current-user";
-import { Container } from "@/components/container";
+
+
 import { db } from "@/lib/db";
 import { redirect } from "next/navigation";
-import { Video } from "lucide-react";
 import { Banner } from "@/components/banner";
 import { ActionForm } from "../_components/action";
 import { ProjectUpdate } from "../_components/project-upate";
 import { ImageForm } from "../_components/image-form";
+import getCurrentUser from "@/actions/get-current-user";
 
 const ProjectIdPage = async ({
   params,

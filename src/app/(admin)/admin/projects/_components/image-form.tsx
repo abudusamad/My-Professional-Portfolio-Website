@@ -18,7 +18,7 @@ interface ImageFormProps {
 }
 
 const formSchema = z.object({
-  imageUrl: z.string().min(1, {
+  image_url: z.string().min(1, {
     message: "Image is required",
   }),
 });
@@ -32,7 +32,7 @@ export const ImageForm = ({ initialData, projectId }: ImageFormProps) => {
 
   const onSubmit = async (values: z.infer<typeof formSchema>) => {
     try {
-      await axios.patch(`/api/admin/project/${projectId}`, values);
+      await axios.patch(`/api/admin/projects/${projectId}`, values);
       toast.success("Project updated");
       toggleEdit();
       router.refresh();
@@ -79,10 +79,10 @@ export const ImageForm = ({ initialData, projectId }: ImageFormProps) => {
       {isEditing && (
         <div>
           <FileUpload
-            endpoint="imageUploader"
+            endpoint="projectImage"
             onChange={(url) => {
               if (url) {
-                onSubmit({ imageUrl: url });
+                onSubmit({ image_url: url });
               }
             }}
           />
