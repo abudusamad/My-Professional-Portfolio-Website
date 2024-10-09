@@ -7,6 +7,7 @@ import { ActionForm } from "../_components/action";
 import { ProjectUpdate } from "../_components/project-upate";
 import { ImageForm } from "../_components/image-form";
 import getCurrentUser from "@/actions/get-current-user";
+import { TechStackForm } from "../_components/tech-stack";
 
 const ProjectIdPage = async ({
   params,
@@ -24,11 +25,20 @@ const ProjectIdPage = async ({
     where: {
       id: params.projectId,
       userId: currentUser.id,
-    },
+    }
+  
   });
   if (!project) {
     return redirect("/admin/projects");
   }
+
+  const techStack = await db.techStack.findMany({
+    orderBy: {
+      name: "asc",
+    }
+  })
+
+
 
   const requiredFields = [
     project.title,
@@ -71,6 +81,9 @@ const ProjectIdPage = async ({
           <div>
             <ProjectUpdate initialData={project} projectId={project.id} />
             <ImageForm initialData={project} projectId={project.id} />
+          </div>
+          <div>
+            <TechStackForm initialData={project} projectId={project.id} techStacks={techStack} />
           </div>
         </div>
       </div>
