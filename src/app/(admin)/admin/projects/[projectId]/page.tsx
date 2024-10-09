@@ -8,6 +8,7 @@ import { ProjectUpdate } from "../_components/project-upate";
 import { ImageForm } from "../_components/image-form";
 import getCurrentUser from "@/actions/get-current-user";
 import { TechStackForm } from "../_components/tech-stack";
+import { LinkForm } from "../_components/link-form";
 
 const ProjectIdPage = async ({
   params,
@@ -84,6 +85,7 @@ const ProjectIdPage = async ({
           </div>
           <div>
             <TechStackForm initialData={project} projectId={project.id} techStacks={techStack} />
+            <LinkForm initialData={project} projectId={project.id} />
           </div>
         </div>
       </div>
