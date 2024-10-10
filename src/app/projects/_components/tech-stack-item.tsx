@@ -4,6 +4,9 @@ import qs from "query-string";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
+import { useStartTyping } from "react-use";
+import { useEffect, useState } from "react";
+import { TechStackItemSkeleton } from "@/components/loading";
 
 interface TechStackItemProps {
   label: string;
@@ -14,6 +17,7 @@ export const TechStackItem = ({ label, value }: TechStackItemProps) => {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
+  const [isLoading, setIsLoading] = useState(true);
 
   const currentTechId = searchParams.get("techId");
   const currentTitle = searchParams.get("title");
@@ -34,6 +38,14 @@ export const TechStackItem = ({ label, value }: TechStackItemProps) => {
 
     router.push(url);
   };
+
+  useEffect(() => {
+    setIsLoading(false);
+  }, []);
+
+  if (isLoading) {
+    return <TechStackItemSkeleton />;
+  }
 
   return (
     <button

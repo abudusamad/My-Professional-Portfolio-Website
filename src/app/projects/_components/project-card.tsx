@@ -1,5 +1,6 @@
 "use client";
 
+
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
@@ -10,7 +11,7 @@ interface ProjectCardProps {
   imageUrl: string;
 }
 
-export const ProjectCard = ({ link, title, imageUrl }: ProjectCardProps) => {
+const ProjectCard = ({ link, title, imageUrl }: ProjectCardProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -32,3 +33,5 @@ export const ProjectCard = ({ link, title, imageUrl }: ProjectCardProps) => {
     </Link>
   );
 };
+
+export default ProjectCard;

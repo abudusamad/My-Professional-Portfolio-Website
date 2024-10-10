@@ -2,7 +2,8 @@
 
 import { TechStack } from "@prisma/client";
 import { TechStackItem } from "./tech-stack-item";
-
+import { Suspense } from "react";
+import { TechStackItemSkeleton } from "@/components/loading";
 
 interface TechStacksProps {
   items: TechStack[];

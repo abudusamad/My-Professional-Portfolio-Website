@@ -1,11 +1,9 @@
-import getCurrentUser from "@/actions/get-current-user";
+
 import { db } from "@/lib/db";
 import { TechStacks } from "./_components/tech-stack";
 import { SearchInput } from "@/components/search-input";
 import { ProjectList } from "./_components/project-list";
 import { getProject } from "@/actions/get-project";
-import { Container } from "@/components/container";
-
 interface ProjectPageProps {
   searchParams: {
     title: string;
