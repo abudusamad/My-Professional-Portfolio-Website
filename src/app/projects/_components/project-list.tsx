@@ -13,7 +13,7 @@ export const ProjectList = ({ items }: CoursesListProps) => {
         {items.map((item) => (
           <ProjectCard
             key={item.id}
-            id={item.id}
+            link={item.link}    
             title={item.title}
             imageUrl={item.image_url!}
           />
