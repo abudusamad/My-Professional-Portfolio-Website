@@ -39,9 +39,8 @@ export const TechStackItem = ({ label, value }: TechStackItemProps) => {
     <button
       onClick={onClick}
       className={cn(
-        "py-2 px-4 text-sm border border-slate-200 rounded-md flex items-center gap-x-1 hover:bg-pink-600 transition",
-        isSelected &&
-          "border-sky-700  bg-pink-600"
+        "py-2 px-4 text-sm border border-slate-200 rounded-md flex items-center gap-x-1  hover:bg-[#16f2b3] hover:border-[#16f2b3] transition",
+        isSelected && "border-sky-700  bg-pink-600"
       )}
       type="button"
     >
