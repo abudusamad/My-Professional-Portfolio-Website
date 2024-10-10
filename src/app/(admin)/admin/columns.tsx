@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { CheckCircle, MoreHorizontal, XCircle } from "lucide-react";
+import { MoreHorizontal} from "lucide-react";
 import { Project } from "@prisma/client";
 import { ArrowUpDown } from "lucide-react";
 
@@ -10,14 +10,11 @@ import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-import {Badge} from "@/components/ui/badge";
+import { Badge } from "@/components/ui/badge";
 import { useRouter } from "next/navigation";
-
 
 export const columns: ColumnDef<Project>[] = [
   {
@@ -40,7 +37,7 @@ export const columns: ColumnDef<Project>[] = [
     cell: ({ row }) => {
       const isPublished = row.original.isPublished;
       return (
-        <Badge variant={isPublished ? "default" : "destructive"}>
+        <Badge variant={isPublished ? "success" : "destructive"}>
           {isPublished ? "Published" : "Draft"}
         </Badge>
       );
@@ -50,13 +47,12 @@ export const columns: ColumnDef<Project>[] = [
   {
     id: "actions",
     cell: ({ row }) => {
-     const project = row.original;
-     const router = useRouter();
+      const project = row.original;
+      const router = useRouter();
 
-     const handleEdit = () => {
-       router.push(`/admin/projects/${project.id}`);
-     };
-
+      const handleEdit = () => {
+        router.push(`/admin/projects/${project.id}`);
+      };
 
       return (
         <DropdownMenu>
@@ -66,18 +62,12 @@ export const columns: ColumnDef<Project>[] = [
               <MoreHorizontal className="h-4 w-4" />
             </Button>
           </DropdownMenuTrigger>
-          <DropdownMenuContent align="center">
-            <DropdownMenuLabel>Actions</DropdownMenuLabel>
-            <DropdownMenuItem
-              onClick={() => navigator.clipboard.writeText(project.id)}
-            >
-              Copy payment ID
+          <DropdownMenuContent align="end">
+            <DropdownMenuItem>
+              <Button onClick={handleEdit} className="w-full">
+                Edit
+              </Button>
             </DropdownMenuItem>
-            <DropdownMenuSeparator />
-            <DropdownMenuItem onClick={handleEdit}>
-              Edit Project
-            </DropdownMenuItem>
-        
           </DropdownMenuContent>
         </DropdownMenu>
       );

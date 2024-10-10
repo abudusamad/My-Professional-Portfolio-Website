@@ -24,6 +24,8 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
+import { PlusCircle } from "lucide-react";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -38,6 +40,8 @@ export function DataTable<TData, TValue>({
   const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
     []
   );
+
+  const router = useRouter();
 
   const table = useReactTable({
     data,
@@ -56,13 +60,19 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex items-center py-4 justify-between">
         <Input
           placeholder="Enter Project Title ... "
           value={table.getState().globalFilter ?? ""}
           onChange={(e) => table.setGlobalFilter(e.target.value)}
           className="max-w-sm"
         />
+        <div className="flex items-center justify-between">
+          <Button onClick={() => router.push("/admin/projects")}>
+            <PlusCircle className="h-4 w-4 mr-2" />
+            Add Project
+          </Button>
+        </div>
       </div>
 
       <div className="rounded-md border">
