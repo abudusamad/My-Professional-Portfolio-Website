@@ -1,6 +1,7 @@
 
 import getCurrentUser from "@/actions/get-current-user";
 import { deleteProjectById, getProjectById, updateProjectById } from "@/data/project";
+import { db } from "@/lib/db";
 import { NextResponse } from "next/server"
 
 
@@ -22,8 +23,6 @@ export async function PATCH(request: Request) {
 
         const project = await getProjectById(projectId);
 
-
-        
         if(!project) {
             return new NextResponse("Not Found",{status: 404})
         }
@@ -33,18 +32,42 @@ export async function PATCH(request: Request) {
         }
 
         const updatedData = await request.json();
-        const updatedProject = await updateProjectById(projectId, updatedData);
+        const {techId: techStackIds} = updatedData;
+
+        if (!Array.isArray(techStackIds) || techStackIds.length === 0) {
+          return new NextResponse("No Tech Stacks Selected", { status: 400 });
+        }
 
 
-        return NextResponse.json(updatedProject)
-
-        
+           const updatedProject = await db.project.update({
+          where: { id: projectId },
+               data: {
+                   ...updatedData,
+                  techStacks: {
+              deleteMany: {}, // Clear the existing tech stacks
+              create: techStackIds.map((techStackId: number) => ({
+                techStack: { connect: { id: techStackId } },
+              })),
+            },
+          },
+          include: {
+            techStacks: {
+              include: { techStack: true },
+            },
+          },   
+            
+        });
+    
+        return NextResponse.json(updatedProject);
     } catch (error) {
         console.log(["UPDATE_PROJECT"], error)
         return new  NextResponse("Internal server Error", {status:500})
         
     }
 }
+
+
+
 
 export async function DELETE(request: Request) {
     try {

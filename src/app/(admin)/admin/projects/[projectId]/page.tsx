@@ -45,8 +45,8 @@ const ProjectIdPage = async ({
     project.title,
     project.description,
     project.image_url,
-    project.techId,
     project.link,
+
   ];
 
   const totalFields = requiredFields.length;

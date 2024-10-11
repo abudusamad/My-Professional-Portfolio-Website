@@ -22,16 +22,12 @@ export const getProject = async ({ title, techId }: GetProject) => {
 
     // If not in the cache, query the database
     const projects = await db.project.findMany({
-      where: {
-        isPublished: true,
-        title: {
-          contains: title,
-          mode: "insensitive",
-        },
-        techId,
-        },
-        include: {
-            techStacks: true,
+        where: {
+            isPublished: true,
+            title: {
+                contains: title,
+                mode: "insensitive",
+            },
         },
       orderBy: {
         createdAt: "desc",

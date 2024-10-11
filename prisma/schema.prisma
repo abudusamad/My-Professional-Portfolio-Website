@@ -107,10 +107,17 @@ model TechStack{
   projects ProjectOnTechStack[]
 } 
 
+model ProjectOnTechStack {
+  projectId         String
+  techStackId       String
+
+  project           Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  techStack         TechStack @relation(fields: [techStackId], references: [id], onDelete: Cascade)
+  @@id([projectId, techStackId])         // Composite primary key to ensure uniqueness
+}
 model Project {
   id          String   @id @default(cuid())
   userId      String
-  techId      String?
   title       String
   description String
   link        String?
@@ -118,22 +125,12 @@ model Project {
   isPublished Boolean @default(false)
   createdAt   DateTime @default(now())
   updateAt    DateTime @updatedAt
-  
+
+  techStacks        ProjectOnTechStack[] 
   user        User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  techStacks  ProjectOnTechStack[]
   @@unique([userId, createdAt])
 }
 
-model ProjectOnTechStack {
-  id         String    @id @default(cuid())
-  techId     String
-  projectId  String
-
-  techStack  TechStack @relation(fields: [techId], references: [id], onDelete: Cascade)
-  project    Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
-
-  @@unique([techId, projectId])  // To ensure no duplicate entries
-}
 
 model BlogPost {
 id          String   @id @default(cuid())

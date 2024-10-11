@@ -19,7 +19,7 @@ export async function PATCH(req: Request, { params }: { params: { projectId: str
             return new NextResponse("Not Found", { status: 404 });
         }
 
-        if(!project.title || !project.description || !project.image_url || !project.techId || !project.link) {
+        if(!project.title || !project.description || !project || !project.link) {
             return new NextResponse("Bad Request", { status: 400 });
         }
 
