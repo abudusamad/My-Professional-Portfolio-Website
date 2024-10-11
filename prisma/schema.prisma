@@ -109,7 +109,7 @@ model TechStack{
 
 model ProjectOnTechStack {
   projectId         String
-  techStackId       String
+  techStackId            String
 
   project           Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
   techStack         TechStack @relation(fields: [techStackId], references: [id], onDelete: Cascade)

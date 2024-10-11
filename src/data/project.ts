@@ -25,7 +25,7 @@ export const updateProjectById = async (id: string, data:Project)=> {
   try {
     const updatedProject = await db.project.update({
       where: { id },
-      data,
+    data,
     });
     return updatedProject;
   } catch (error) {

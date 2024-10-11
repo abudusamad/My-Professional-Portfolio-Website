@@ -1,7 +1,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { Check, ChevronsUpDown, Pencil, PlusCircle } from "lucide-react";
+import { Check, ChevronsUpDown, Pencil, } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { useState } from "react";
@@ -43,7 +43,7 @@ interface TechStackProps {
 
 // Modify the form schema to accept an array of tech IDs
 const FormSchema = z.object({
-  techId: z.array(
+  techStackId: z.array(
     z.string({
       required_error: "Please select at least one technology stack.",
     })
@@ -62,7 +62,7 @@ export const TechStackForm = ({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      techId: [] // Multiple initial values
+      techStackId: [],
     },
   });
 
@@ -98,7 +98,7 @@ export const TechStackForm = ({
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
-              name="techId"
+              name="techStackId"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
                   <FormLabel>Technology Stack</FormLabel>
@@ -144,13 +144,13 @@ export const TechStackForm = ({
                                   );
                                   if (isSelected) {
                                     form.setValue(
-                                      "techId",
+                                      "techStackId",
                                       field.value.filter(
                                         (id) => id !== techStack.id
                                       )
                                     );
                                   } else {
-                                    form.setValue("techId", [
+                                    form.setValue("techStackId", [
                                       ...field.value,
                                       techStack.id,
                                     ]);
