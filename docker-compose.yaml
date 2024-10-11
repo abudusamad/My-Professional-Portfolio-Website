@@ -19,6 +19,7 @@ services:
       - RESEND_API_KEY=${RESEND_API_KEY}
       - UPLOADTHING_TOKEN=${UPLOADTHING_TOKEN}
       - UPLOADTHING_SECRET=${UPLOADTHING_SECRET}
+      - REDIS_URL=${REDIS_URL}
     # Set environment variables based on the .env file
     env_file:
       - .env

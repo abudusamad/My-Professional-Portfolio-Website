@@ -26,6 +26,11 @@ export const updateProjectById = async (id: string, data:Project)=> {
     const updatedProject = await db.project.update({
       where: { id },
       data,
+      include: {
+        techStacks: {
+          
+        }
+      }
     });
     return updatedProject;
   } catch (error) {

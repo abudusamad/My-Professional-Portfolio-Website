@@ -35,28 +35,19 @@ import {
 } from "@/components/ui/popover";
 import { Project, TechStack } from "@prisma/client";
 
-const languages = [
-  { label: "English", value: "en" },
-  { label: "French", value: "fr" },
-  { label: "German", value: "de" },
-  { label: "Spanish", value: "es" },
-  { label: "Portuguese", value: "pt" },
-  { label: "Russian", value: "ru" },
-  { label: "Japanese", value: "ja" },
-  { label: "Korean", value: "ko" },
-  { label: "Chinese", value: "zh" },
-] as const;
-
 interface TechStackProps {
   initialData: Project;
   projectId: string;
   techStacks: TechStack[];
 }
 
+// Modify the form schema to accept an array of tech IDs
 const FormSchema = z.object({
-  techId: z.string({
-    required_error: "Please select technology stack.",
-  }),
+  techId: z.array(
+    z.string({
+      required_error: "Please select at least one technology stack.",
+    })
+  ),
 });
 
 export const TechStackForm = ({
@@ -71,14 +62,16 @@ export const TechStackForm = ({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      techId: initialData.techId || "",
+      techId: [] // Multiple initial values
     },
   });
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
+    console.log(values)
     try {
-      await axios.patch(`/api/admin/projects/${projectId}`, values);
+      await axios.patch(`/api/admin/projects/${projectId}/techstack`, values);
       toast.success("Project updated");
+    
       toggleEdit();
       router.refresh();
     } catch {
@@ -109,7 +102,7 @@ export const TechStackForm = ({
               name="techId"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
-                  <FormLabel>Language</FormLabel>
+                  <FormLabel>Technology Stack</FormLabel>
                   <Popover>
                     <PopoverTrigger asChild>
                       <FormControl>
@@ -118,21 +111,24 @@ export const TechStackForm = ({
                           role="combobox"
                           className={cn(
                             "w-full justify-between",
-                            !field.value && "text-muted-foreground"
+                            field.value.length === 0 && "text-muted-foreground"
                           )}
                         >
-                          {field.value
-                            ? techStacks.find(
-                                (techStack) => techStack.id === field.value
-                              )?.name
-                            : "Select technology stack"}
+                          {field.value.length > 0
+                            ? techStacks
+                                .filter((stack) =>
+                                  field.value.includes(stack.id)
+                                )
+                                .map((stack) => stack.name)
+                                .join(", ") // Display multiple selected tech stacks
+                            : "Select technology stacks"}
                           <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
                         </Button>
                       </FormControl>
                     </PopoverTrigger>
                     <PopoverContent className="w-[200px] p-0">
                       <Command>
-                        <CommandInput placeholder="Search language..." />
+                        <CommandInput placeholder="Search technology stack..." />
                         <CommandList>
                           <CommandEmpty>
                             No technology stack found.
@@ -143,13 +139,29 @@ export const TechStackForm = ({
                                 value={techStack.name}
                                 key={techStack.id}
                                 onSelect={() => {
-                                  form.setValue("techId", techStack.id);
+                                  // Toggle selection of tech stacks
+                                  const isSelected = field.value.includes(
+                                    techStack.id
+                                  );
+                                  if (isSelected) {
+                                    form.setValue(
+                                      "techId",
+                                      field.value.filter(
+                                        (id) => id !== techStack.id
+                                      )
+                                    );
+                                  } else {
+                                    form.setValue("techId", [
+                                      ...field.value,
+                                      techStack.id,
+                                    ]);
+                                  }
                                 }}
                               >
                                 <Check
                                   className={cn(
                                     "mr-2 h-4 w-4",
-                                    techStack.id === field.value
+                                    field.value.includes(techStack.id)
                                       ? "opacity-100"
                                       : "opacity-0"
                                   )}
@@ -163,8 +175,7 @@ export const TechStackForm = ({
                     </PopoverContent>
                   </Popover>
                   <FormDescription>
-                    This is the technology stack that will be used in the
-                    project.
+                    Select the technology stacks used in this project.
                   </FormDescription>
                   <FormMessage />
                 </FormItem>

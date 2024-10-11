@@ -21,8 +21,7 @@ export async function PATCH(request: Request) {
         }
 
         const project = await getProjectById(projectId);
-        console.log("Fetched project:", project?.description);
-        console.log("Fetched project:", project);
+
 
         
         if(!project) {
@@ -35,7 +34,7 @@ export async function PATCH(request: Request) {
 
         const updatedData = await request.json();
         const updatedProject = await updateProjectById(projectId, updatedData);
-            console.log("Updated project:", updatedProject);
+
 
         return NextResponse.json(updatedProject)
 
@@ -66,8 +65,6 @@ export async function DELETE(request: Request) {
         if(!project) {
             return new NextResponse("Not Found",{status: 404})
         }
-
-        console.log("project", project)
 
         if(project.userId !== currentUser.id && currentUser.role !== "ADMIN") {
             return new NextResponse("Forbidden: You do not have permission to delete this project",{status: 403})
