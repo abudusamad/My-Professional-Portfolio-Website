@@ -61,7 +61,6 @@
     "tailwind-merge": "^2.3.0",
     "tailwindcss-animate": "^1.0.7",
     "toastify": "^2.0.1",
-    "ts-node": "^10.9.2",
     "uploadthing": "^7.0.2",
     "uuid": "^10.0.0",
     "zod": "^3.23.8",
@@ -69,7 +68,7 @@
   },
   "devDependencies": {
     "@types/bcryptjs": "^2.4.6",
-    "@types/node": "^20",
+    "@types/node": "^20.16.11",
     "@types/nodemailer": "^6.4.15",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -80,6 +79,7 @@
     "postcss": "^8",
     "prisma": "^5.16.0",
     "tailwindcss": "^3.4.1",
-    "typescript": "^5.6.2"
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   }
 }

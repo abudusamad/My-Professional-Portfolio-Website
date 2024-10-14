@@ -109,11 +109,11 @@ model TechStack{
 
 model ProjectOnTechStack {
   projectId         String
-  techStackId            String
+  techId            String
 
   project           Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
-  techStack         TechStack @relation(fields: [techStackId], references: [id], onDelete: Cascade)
-  @@id([projectId, techStackId])         // Composite primary key to ensure uniqueness
+  techStack         TechStack @relation(fields: [techId], references: [id], onDelete: Cascade)
+  @@id([projectId, techId])         // Composite primary key to ensure uniqueness
 }
 model Project {
   id          String   @id @default(cuid())

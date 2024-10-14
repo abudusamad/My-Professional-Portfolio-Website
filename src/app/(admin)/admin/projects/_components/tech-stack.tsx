@@ -43,7 +43,7 @@ interface TechStackProps {
 
 // Modify the form schema to accept an array of tech IDs
 const FormSchema = z.object({
-  techStackId: z.array(
+  techId: z.array(
     z.string({
       required_error: "Please select at least one technology stack.",
     })
@@ -62,7 +62,7 @@ export const TechStackForm = ({
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      techStackId: [],
+      techId: [],
     },
   });
 
@@ -98,7 +98,7 @@ export const TechStackForm = ({
           <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
             <FormField
               control={form.control}
-              name="techStackId"
+              name="techId"
               render={({ field }) => (
                 <FormItem className="flex flex-col">
                   <FormLabel>Technology Stack</FormLabel>
@@ -144,13 +144,13 @@ export const TechStackForm = ({
                                   );
                                   if (isSelected) {
                                     form.setValue(
-                                      "techStackId",
+                                      "techId",
                                       field.value.filter(
                                         (id) => id !== techStack.id
                                       )
                                     );
                                   } else {
-                                    form.setValue("techStackId", [
+                                    form.setValue("techId", [
                                       ...field.value,
                                       techStack.id,
                                     ]);
