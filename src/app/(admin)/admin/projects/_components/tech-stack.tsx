@@ -68,7 +68,7 @@ export const TechStackForm = ({
 
   const onSubmit = async (values: z.infer<typeof FormSchema>) => {
     try {
-      await axios.patch(`/api/admin/projects/${projectId}`, values);
+      await axios.post(`/api/admin/projects/${projectId}`, values);
       toast.success("Project updated");
     
       toggleEdit();

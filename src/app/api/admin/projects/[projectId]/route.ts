@@ -14,6 +14,8 @@ export async function POST(req: Request, { params }: { params: { projectId: stri
 
         const projectId = params.projectId;
 
+        console.log("Project ID", projectId);
+
         if (!projectId) {
             return new NextResponse("Bad Request: Missing projectId", { status: 400 });
         }
@@ -21,6 +23,8 @@ export async function POST(req: Request, { params }: { params: { projectId: stri
         const project = await db.project.findUnique({
             where: { id: projectId },
         });
+
+        console.log("Project", project);
 
         if (!project) {
             return new NextResponse("Not Found: Project does not exist", { status: 404 });
@@ -30,20 +34,22 @@ export async function POST(req: Request, { params }: { params: { projectId: stri
             return new NextResponse("Forbidden: You do not have permission to update this project", { status: 403 });
         }
 
-        const { techIds } = await req.json();
+        const { techId } = await req.json();
 
-        if (!techIds || !Array.isArray(techIds) || techIds.length === 0) {
+        console.log("Tech IDs", techId);
+
+        if (!techId || !Array.isArray(techId) || techId.length === 0) {
             return new NextResponse("Bad Request: No Tech Stacks Selected", { status: 400 });
         }
 
         // Validate tech stack IDs
         const validTechStacks = await db.techStack.findMany({
             where: {
-                id: { in: techIds },
+                id: { in: techId },
             },
         });
 
-        if (validTechStacks.length !== techIds.length) {
+        if (validTechStacks.length !== techId.length) {
             return new NextResponse("Bad Request: Some Tech Stacks are invalid", { status: 400 });
         }
 
@@ -57,7 +63,7 @@ export async function POST(req: Request, { params }: { params: { projectId: stri
             });
 
             // Add new associations based on selected tech stack IDs
-            const newTechStacks = techIds.map((techId: string) => ({
+            const newTechStacks = techId.map((techId: string) => ({
                 projectId,
                 techId,
             }));
