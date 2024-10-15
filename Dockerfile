@@ -3,7 +3,7 @@ FROM node:20-alpine AS base
 # Install the necessary dependencies
 FROM base AS deps
 
-RUN apk add --no-cache libc6-compat vips-dev build-base python3 
+RUN apk add --no-cache libc6-compat
 
 
 WORKDIR /app
