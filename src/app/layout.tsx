@@ -49,7 +49,7 @@ export default function RootLayout({
           <div className="hidden top-[80px] md:flex md:w-72 flex-col fixed inset-y-0 z-50">
             <Sidebar />
           </div>
-          <main className="min-h-screen relative md:pl-72 pt-[80px] mx-auto px-4 sm:px-12 lg:max-w-[76rem] xl:max-w-[80rem] 2xl:max-w-[100rem] text-white ">
+          <main className="min-h-screen relative md:pl-72 pt-[80px] mx-auto px-4 sm:px-12 lg:max-w-[80rem] xl:max-w-[90rem] 2xl:max-w-[120rem] text-white ">
             <Provider />
             {children}
             <Footer />
