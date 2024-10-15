@@ -24,10 +24,9 @@ async function locate() {
             { name: "Supabase" },
             { name: "Flask" },
             { name: "Express" },
-            {name: "Hono"}
-    
-                
-            ]
+            { name: "Hono" },
+            { name: "Python" },
+            { name: "Docker"}    ]
         });
         console.log("Seeding locations successful");
     } catch (error) {
