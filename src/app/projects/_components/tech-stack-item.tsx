@@ -9,16 +9,12 @@ interface TechStackItemProps {
   label: string;
   value?: string;
   isSelected?: boolean;
+  currentTitle?: string;
 }
 
-export const TechStackItem = ({ label, value, isSelected}: TechStackItemProps) => {
+export const TechStackItem = ({ label, value, isSelected, currentTitle}: TechStackItemProps) => {
   const pathname = usePathname();
   const router = useRouter();
-  const searchParams = useSearchParams();
-
-  const currentTitle = searchParams.get("title");
-
-
   const onClick = () => {
     const url = qs.stringifyUrl(
       {

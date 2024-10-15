@@ -76,6 +76,9 @@ function Education() {
                         <p className="text-sm sm:text-base">
                           {education.institution}
                         </p>
+                        <p className="text-xs sm:text-sm">
+                          {education.Program}
+                        </p>
                       </div>
                     </div>
                   </div>

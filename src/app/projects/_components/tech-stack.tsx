@@ -11,8 +11,9 @@ interface TechStacksProps {
 
 export const TechStacks = ({ items }: TechStacksProps) => {
   const searchParams = useSearchParams();
-
+  const currentTitle = searchParams.get("title");
   const selectedTechId = searchParams.get("techId");
+  
   return (
     <div className="flex items-center gap-x-4 overflow-x-auto pb-2 mt-6">
       <TechStackItem
@@ -27,6 +28,7 @@ export const TechStacks = ({ items }: TechStacksProps) => {
           label={item.name}
           value={item.id}
           isSelected={selectedTechId === item.id}
+          currentTitle={currentTitle || ""}
         />
       ))}
     </div>
