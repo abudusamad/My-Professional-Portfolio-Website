@@ -4,8 +4,6 @@ import qs from "query-string";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { useEffect, useState } from "react";
-import { TechStackItemSkeleton } from "@/components/loading";
 
 interface TechStackItemProps {
   label: string;
@@ -17,7 +15,6 @@ export const TechStackItem = ({ label, value, isSelected}: TechStackItemProps) =
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isLoading, setIsLoading] = useState(true);
 
   const currentTitle = searchParams.get("title");
 
@@ -38,13 +35,6 @@ export const TechStackItem = ({ label, value, isSelected}: TechStackItemProps) =
     router.push(url);
   };
 
-  useEffect(() => {
-    setIsLoading(false);
-  }, []);
-
-  if (isLoading) {
-    return <TechStackItemSkeleton />;
-  }
 
   return (
     <button

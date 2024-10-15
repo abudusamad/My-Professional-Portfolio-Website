@@ -1,9 +1,9 @@
 "use client";
 
-
+import { ProjectCardSkeleton } from "@/components/loading";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 
 interface ProjectCardProps {
   link?: string | null;
@@ -15,8 +15,13 @@ const ProjectCard = ({ link, title, imageUrl }: ProjectCardProps) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    setIsLoading(false);
+    const timeoutId = setTimeout(() => setIsLoading(false), 200); // Simulate a loading delay
+    return () => clearTimeout(timeoutId); // Clean up
   }, []);
+
+  if (isLoading) {
+    return <ProjectCardSkeleton />;
+  }
 
   return (
     <Link href={`${link}`}>
