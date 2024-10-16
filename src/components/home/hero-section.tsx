@@ -31,7 +31,7 @@ export const HeroSection = () => {
         {/* Action Buttons */}
         <div className="flex items-center gap-3">
           <Link
-            href="#contact"
+            href="/"
             className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r to-pink-500 from-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out md:font-semibold"
             role="button"
           >
@@ -40,7 +40,7 @@ export const HeroSection = () => {
           </Link>
 
           <Link
-            href={personalData.resume}
+            href="/"
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-1 hover:gap-3 rounded-full bg-gradient-to-r from-pink-500 to-violet-600 px-3 md:px-8 py-3 md:py-4 text-center text-xs md:text-sm font-medium uppercase tracking-wider text-white transition-all duration-200 ease-out md:font-semibold"
