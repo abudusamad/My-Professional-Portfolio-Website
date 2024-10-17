@@ -1,7 +1,8 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal} from "lucide-react";
+import { MoreHorizontal } from "lucide-react";
 import { Project } from "@prisma/client";
 import { ArrowUpDown } from "lucide-react";
 
@@ -14,7 +15,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 import { Badge } from "@/components/ui/badge";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 export const columns: ColumnDef<Project>[] = [
   {
@@ -43,17 +44,10 @@ export const columns: ColumnDef<Project>[] = [
       );
     },
   },
-
   {
     id: "actions",
     cell: ({ row }) => {
       const project = row.original;
-      const router = useRouter();
-
-      const handleEdit = () => {
-        router.push(`/admin/projects/${project.id}`);
-      };
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -64,9 +58,9 @@ export const columns: ColumnDef<Project>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem>
-              <Button onClick={handleEdit} className="w-full">
-                Edit
-              </Button>
+              <Link href={`/admin/projects/${project.id}`}>
+                <Button className="w-full">Edit</Button>
+              </Link>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
