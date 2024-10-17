@@ -30,6 +30,14 @@ export async function POST(req: Request) {
             }
         })
 
+        await db.notification.create({
+            data: {
+                userId: currentUser.id,
+                message: `Project ${project.title} created`,
+                isRead: false
+            }
+        });
+
         return NextResponse.json(project);
         
     } catch (error) {
