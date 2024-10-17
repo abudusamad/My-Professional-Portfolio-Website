@@ -13,7 +13,7 @@ export async function middleware(req: NextRequest) {
 
   // Check if the user has the "ADMIN" role
   if (token.role !== 'ADMIN') {
-    return NextResponse.redirect(new URL('/unauthorized', req.url));
+    return NextResponse.redirect(new URL('/auth/error', req.url));
   }
 
   return NextResponse.next();
