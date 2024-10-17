@@ -12,7 +12,7 @@ export const Logo = () => {
       onClick={() => router.push("/")}
     >
       <Image height={45} width={45} alt="logo" src="/logo.png" />
-      <p>Abudu Samadu</p>
+      <p className="text-white  font-semibold hidden md:block">Abudu Samadu</p>
     </div>
   );
 };
