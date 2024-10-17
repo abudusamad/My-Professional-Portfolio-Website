@@ -2,7 +2,7 @@ import { db } from "@/lib/db";
 import getCurrentUser from "./get-current-user";
 
 
-export const getNotification = async () => {
+export const getNotificationRead = async () => {
     try {
         
         const currentUser = await getCurrentUser();
@@ -10,15 +10,14 @@ export const getNotification = async () => {
             return [];
         }
 
-        const notifications = await db.notification.findMany({
+        const notifications = await db.notification.updateMany({
             where: {
                 userId: currentUser.id,
                 isRead: false
             },
-            orderBy: {
-                createdAt: "desc"
-            }
-          
+            data: {
+                isRead: true
+            },
         });
 
         return notifications;
