@@ -1,6 +1,7 @@
 import { Suspense } from "react";
 import { Metadata } from "next";
 import Education from "./_components/education";
+import Contact from "../contact/_components/contact";
 
 
 export const metadata: Metadata = {
@@ -11,7 +12,8 @@ description: "Discover the academic background and educational achievements that
 const EducationPage = () => {
   return (
     <Suspense>
-     <Education />
+      <Education />
+      <Contact/>
     </Suspense>
   );
 };

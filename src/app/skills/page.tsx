@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { Metadata } from "next";
 import { Skills } from "./_components/skills";
 import Education from "../education/_components/education";
+import Contact from "../contact/_components/contact";
 
 export const metadata: Metadata = {
   title: "skills",
@@ -14,6 +15,7 @@ const SkillPage = () => {
     <Suspense>
       <Skills />
       <Education />
+      <Contact />
     </Suspense>
   );
 };
