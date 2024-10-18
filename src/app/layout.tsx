@@ -8,6 +8,7 @@ import { Sidebar } from "@/components/sidebar";
 import { SessionProvider } from "next-auth/react";
 import { Footer } from "@/components/footer";
 import { Provider } from "@/providers/Providers";
+import { ScrollToTop } from "./helper/scroll-to-top";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -52,6 +53,7 @@ export default function RootLayout({
           <main className="min-h-screen relative md:pl-72 pt-[80px] mx-auto px-4 sm:px-12 lg:max-w-[80rem] xl:max-w-[90rem] 2xl:max-w-[120rem] text-white ">
             <Provider />
             {children}
+            <ScrollToTop />
             <Footer />
           </main>
         </body>
