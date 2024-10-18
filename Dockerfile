@@ -13,7 +13,7 @@ RUN corepack prepare npm@latest --activate
 COPY package*.json ./
 COPY prisma ./prisma
 
-RUN corepack enable npm && npm i --frozen-lockfile
+RUN corepack enable npm && npm install --frozen-lockfile
 
 
 
