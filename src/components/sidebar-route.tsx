@@ -4,6 +4,7 @@ import {
   Blend,
   Book,
   Compass,
+  Contact,
   Layout,
   ListChecks,
   Projector,
@@ -52,6 +53,11 @@ const guestRoutes = [
     label: "Projects",
     href: "/projects",
   },
+  {
+    icon: Contact,
+    label: "Contact",
+    href: "/contact",
+  }
 ];
 
 const adminRoute = [
@@ -102,7 +108,7 @@ export const SidebarRoutes = () => {
       ))}
       {!isAdmin && (
         <div className="flex items-center justify-center ">
-          <Card className="mt-28 bg-transparent w-72 md:w-64 ">
+          <Card className="mt-20 bg-transparent w-72 md:w-64 ">
             <CardHeader>
               <CardTitle>
                 <p className="text-amber-300 ">
