@@ -121,6 +121,7 @@ model Project {
   link               String?
   image_url          String?
   isPublished        Boolean @default(false)
+  featured           Boolean @default(false)
   createdAt          DateTime @default(now())
   updateAt           DateTime @updatedAt
 
@@ -139,6 +140,7 @@ model BlogPost {
   authorId              String
   createdAt             DateTime @default(now())
   updatedAt             DateTime @updatedAt
+  featured              Boolean @default(false)
 
   author              User @relation(fields: [authorId], references: [id])
 
