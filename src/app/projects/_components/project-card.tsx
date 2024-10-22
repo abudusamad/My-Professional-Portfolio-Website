@@ -22,20 +22,20 @@ const ProjectCard = ({ link, title, imageUrl, project }: ProjectCardProps) => {
   const [isLiked, setIsLiked] = useState(false);
   const router = useRouter();
 
-  useEffect(() => {
-    const checkIfLiked = async () => {
-      if (session) {
-        try {
-          const response = await axios.get(`/api/projects/${project.id}/like`);
-          setIsLiked(response.data.liked);
-        } catch (error) {
-          console.error("Failed to check if liked:", error);
-        }
-      }
-    };
+  // useEffect(() => {
+  //   const checkIfLiked = async () => {
+  //     if (session) {
+  //       try {
+  //         const response = await axios.get(`/api/projects/${project.id}/like`);
+  //         setIsLiked(response.data.liked);
+  //       } catch (error) {
+  //         console.error("Failed to check if liked:", error);
+  //       }
+  //     }
+  //   };
 
-    checkIfLiked();
-  }, [session, project.id]);
+  //   checkIfLiked();
+  // }, [session]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => setIsLoading(false), 200); // Simulate a loading delay
@@ -74,7 +74,6 @@ const ProjectCard = ({ link, title, imageUrl, project }: ProjectCardProps) => {
           <div className="text-lg md:text-base font-medium group-hover:text-pink-500 transition line-clamp-2">
             {title}
           </div>
-          <button onClick={handleLike}>{isLiked ? "Unlike" : "Like"}</button>
         </div>
       </div>
     </Link>
