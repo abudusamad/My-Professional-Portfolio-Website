@@ -45,10 +45,25 @@ notifications       Notification[]
 jobs                Job[]
 contacts            Contact[]
 sessions            Session[]
-accounts            Account[]    
+accounts            Account[] 
+likes               Like[]
+
 createdAt           DateTime @default(now())
 updatedAt           DateTime @updatedAt 
-}       
+}
+
+
+model Like {
+  id        String   @id @default(cuid())
+  userId    String
+  projectId String
+  createdAt DateTime @default(now())
+
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  project   Project  @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, projectId])
+}
 
 model Account {
   id                 String  @id @default(cuid())
@@ -126,6 +141,7 @@ model Project {
   updateAt           DateTime @updatedAt
 
   techStacks        ProjectOnTechStack[] 
+  likes             Like[]
   user              User @relation(fields: [userId], references: [id], onDelete: Cascade)
   @@unique([userId, createdAt])
 }
