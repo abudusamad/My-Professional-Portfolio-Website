@@ -13,7 +13,7 @@ interface ProjectCardProps {
   link?: string | null;
   title: string;
   imageUrl: string;
-  project: Project;
+  project?: Project;
 }
 
 const ProjectCard = ({ link, title, imageUrl, project }: ProjectCardProps) => {
@@ -54,9 +54,9 @@ const ProjectCard = ({ link, title, imageUrl, project }: ProjectCardProps) => {
 
     try {
       if (isLiked) {
-        await axios.delete(`/api/projects/${project.id}/like`);
+        await axios.delete(`/api/projects/${project?.id}/like`);
       } else {
-        await axios.post(`/api/projects/${project.id}/like`);
+        await axios.post(`/api/projects/${project?.id}/like`);
       }
       setIsLiked(!isLiked);
     } catch (error) {
